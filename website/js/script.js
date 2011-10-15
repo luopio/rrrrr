@@ -33,6 +33,7 @@ paper.install(window);
 $(function() {
   paper.setup('reunacanvas');
   var tool = new Tool();
+  view.draw();
 });
 
 
