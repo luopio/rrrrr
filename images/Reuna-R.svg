@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="R" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100">
+<path id="R-top" fill="#268062" d="M80,42.5C80,60.449,64.928,75,46.5,75H20V10h26.5C64.928,10,80,24.551,80,42.5z"/>
+<polygon id="R-bottom" fill="#358026" points="20,30 80,90 20,90 "/>
+</svg>
