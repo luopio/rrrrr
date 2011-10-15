@@ -66,9 +66,9 @@ td { vertical-align: top; }
 
 #container {}
 ul#nav {position:fixed;top:25px;left:25px;z-index:200000; letter-spacing:1.5px; font-size:11px;}
-ul#nav li {cursor:pointer; line-height:1.8; opacity:0.5;}
-ul#nav li:first-child {margin-bottom:10px; opacity:1;}
-ul#nav li:first-letter {opacity:0.4;}
+ul#nav li {cursor:pointer; line-height:1.8; color:rgba(0, 0, 0, 0.4);}
+ul#nav li:first-child {margin-bottom:10px;}
+ul#nav li:first-letter {color:rgba(0, 0, 0, 0.2);}
 #logo { padding-bottom:15px; border-bottom:1px solid #000; border-color:rgba(0, 0, 0, 0.1);}
 ul#nav li:hover {color:#60c;}
 
