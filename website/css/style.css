@@ -62,17 +62,19 @@ table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 
-/* ==|== primary styles =====================================================
-   Author: 
-   ========================================================================== */
+/* ==|== primary styles ===================================================== */
 
+#container {}
+#logo {position:fixed;top:40px;left:40px;z-index:200000;}
+ul#nav {position:fixed;top:80px;left:40px;z-index:200000;}
+ul#nav li {cursor:pointer;}
 
-
-
-
-
-
-
+.section {padding-top:0;height:100%;width:100%;}
+.section canvas {}
+#reuna {background-color:#cff;}
+#archiveflow {background-color:#ffc;}
+#historyflow {background-color:#fcf;}
+#colortv {background-color:#ccf;}
 
 
 
