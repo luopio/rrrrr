@@ -7,9 +7,9 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 audio:not([controls]) { display: none; }
 [hidden] { display: none; }
 
-html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { margin: 0; font-size: 13px; line-height: 1.231; }
-body, button, input, select, textarea { font-family: sans-serif; color: #222; }
+html { font-size:100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { margin:0; font-size:12px; line-height:1.231; }
+body, button, input, select, textarea { font-family:'Comfortaa', sans-serif; color:#222; }
 
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
@@ -65,21 +65,19 @@ td { vertical-align: top; }
 /* ==|== primary styles ===================================================== */
 
 #container {}
-#logo {position:fixed;top:40px;left:40px;z-index:200000;}
-ul#nav {position:fixed;top:80px;left:40px;z-index:200000;}
-ul#nav li {cursor:pointer;}
+ul#nav {position:fixed;top:25px;left:25px;z-index:200000; letter-spacing:1.5px; font-size:11px;}
+ul#nav li {cursor:pointer; line-height:1.8; opacity:0.5;}
+ul#nav li:first-child {margin-bottom:10px; opacity:1;}
+ul#nav li:first-letter {opacity:0.4;}
+#logo { padding-bottom:15px; border-bottom:1px solid #afafaf;}
+ul#nav li:hover {color:#60c;}
 
 .section {padding-top:0;height:100%;width:100%;}
 .section canvas {}
-#reuna {background-color:#cff;}
+#reuna {background-color:#dbdbdb;}
 #archiveflow {background-color:#ffc;}
 #historyflow {background-color:#fcf;}
 #colortv {background-color:#ccf;}
-
-
-
-
-
 
 
 
