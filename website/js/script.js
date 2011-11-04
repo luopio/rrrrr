@@ -63,8 +63,14 @@ $(function() {
 });
 
 
-var hoveringR1 = {};
-var hoveringR2 = {};
+var hoveringR1 = {curBlinkenDelayIndex: 0};
+var hoveringR2 = {curBlinkenDelayIndex: 0};
+
+// delays for on, off, on, off, on, off, etc. should be even to make sure 
+// blink is off when getting out
+var blinkenLengths = [ [1000, 300, 700, 300, 300, 200, 200, 100, 40, 100], 
+                        [150, 150, 150, 150, 150, 150, 150, 100],
+                        [200, 100, 200, 100]];
 
 /* paperjs stuff below */
 $(function() {
@@ -143,16 +149,29 @@ $(function() {
     setTimeout(function() { 
             shiverLoop(); 
         }, 200);
+    
+    hoveringR1.blinkenDelays 
+        = blinkenLengths[parseInt(Math.random() * blinkenLengths.length)];
+    hoveringR2.blinkenDelays 
+        = blinkenLengths[parseInt(Math.random() * blinkenLengths.length)];
+        
+    setTimeout(function() {blinkR(hoveringR1);}, 1000);
+    setTimeout(function() {blinkR(hoveringR2);}, 1400);
+    
 });
 
 function shiverLoop() {
     hoveringR1.counter += 1;
     hoveringR2.counter += 1;
+    /*
+    shiver the hoverings a bit
     hoveringR1.g.position.x = hoveringR1.position.x + 1.5 - Math.random() * 3;
     hoveringR1.g.position.y = hoveringR1.position.y + 1.5 - Math.random() * 3;
     hoveringR2.g.position.x = hoveringR2.position.x + 1.5 - Math.random() * 3;
     hoveringR2.g.position.y = hoveringR2.position.y + 1.5 - Math.random() * 3;
+    */
     
+    /*
     if(hoveringR1.counter > 42) {
         hoveringR1.position.x = view.center.x + 75 - Math.random() * 150;
         hoveringR1.position.y = view.center.y + 30 - Math.random() * 60;
@@ -174,7 +193,7 @@ function shiverLoop() {
     } else {
         hoveringR2.g.opacity += -0.1 + Math.random() * 0.2;
     }
-    
+    */
 /*  
     g4.position.x = view.center.x + (view.center.x - mouseSpotted.x) / 18.0;
     g4.position.y = view.center.y + (view.center.y - mouseSpotted.y) / 18.0;
@@ -184,6 +203,33 @@ function shiverLoop() {
     view.draw();
     
     setTimeout(function() {shiverLoop();}, 200);
+}
+
+function blinkR(rElement) {
+    if(rElement.g.opacity > 0) {
+        rElement.g.opacity = 0;
+    } else {
+        rElement.g.opacity = 0.5 + Math.random() * 0.5;
+    }
+    view.draw();
+
+    if(rElement.blinkenDelays.length == rElement.curBlinkenDelayIndex) {
+        rElement.curBlinkenDelayIndex = 0;
+        rElement.blinkenDelays = null;
+        rElement.blinkenDelays = blinkenLengths[
+                                        parseInt(Math.random() * blinkenLengths.length)
+                                        ];
+        rElement.g.position.x = view.center.x + 75 - Math.random() * 150;
+        rElement.g.position.y = view.center.y + 30 - Math.random() * 60;
+        setTimeout(function() { blinkR(rElement); }, 1000 + 10000 * Math.random());
+        rElement.g.opacity = 0; // make sure were off..
+        return;
+    }
+    
+    setTimeout(
+        function() { blinkR(rElement); }, 
+        rElement.blinkenDelays[rElement.curBlinkenDelayIndex++]
+        );
 }
 
 
