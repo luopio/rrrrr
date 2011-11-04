@@ -25,15 +25,15 @@ $(function() {
   init();
 });
 
+var circles = [];
+var circleData = { centerX: Math.random() * 100 + 100,
+                    centerY: Math.random() * 100 + 100,
+                    hilightIndex: 0,
+                    greenSpeed: 0.01,
+                    redSpeed: 0.01,
+                    blueSpeed: 0.01
+                    };
 
-var hoveringR1 = {curBlinkenDelayIndex: 0};
-var hoveringR2 = {curBlinkenDelayIndex: 0};
-
-// delays for on, off, on, off, on, off, etc. should be even to make sure 
-// blink is off when getting out
-var blinkenLengths = [ [1000, 300, 700, 300, 300, 200, 200, 100, 40, 100], 
-                        [150, 150, 150, 150, 150, 150, 150, 100],
-                        [200, 100, 200, 100]];
 
 /* paperjs stuff below */
 $(function() {
@@ -48,14 +48,15 @@ $(function() {
     // - while clipping elements, the top element (mask) defines the color 
     //   for the underlying elems, which sucks badly
     
-    g2 = getReunaLogoGroup(2.9,
-                    new paper.RGBColor(0.0, 0.3, 0.3), 
-                    new paper.RGBColor(0.0, 0.4, 0.4), 
-                    new Point(view.center.x, view.center.y));
-    g3 = getReunaLogoGroup(2.8, 
-                    new paper.RGBColor(0.3, 0.0, 0.3), 
-                    new paper.RGBColor(0.4, 0.0, 0.4), 
-                    new Point(view.center.x, view.center.y));
+    for(i = 0; i < 50; i++) {
+        var c = new Path.Circle(new Point(circleData.centerX, circleData.centerY), 
+                                    1050 - 20 * i);
+        c.fillColor = new paper.RGBColor(0.4, 1 - 0.02 * i, 0.8 - i * 0.01);
+        c.strokeColor = 'black';
+        circles.push(c);
+    }
+
+    
     g5 = getReunaLogoGroup(2.8, 
                     new paper.RGBColor(0.3, 0.3, 0.3), 
                     new paper.RGBColor(0.4, 0.4, 0.4), 
@@ -70,38 +71,12 @@ $(function() {
                     new Point(view.center.x, view.center.y));
     
     g1.opacity = 0.5;
-    g2.opacity = 0.5;
-    g3.opacity = 0.3;
     g4.opacity = 0.2;
     g5.opacity = 0.1;
-    
-    hoveringR1.g = g2;
-    hoveringR2.g = g3;
-    hoveringR1.position = new Point();
-    hoveringR2.position = new Point();
-    hoveringR1.position.x = view.center.x;
-    hoveringR1.position.y = view.center.y;
-    hoveringR2.position.x = view.center.x;
-    hoveringR2.position.y = view.center.y;
-    hoveringR1.counter = 22;
-    hoveringR2.counter = 0;
-    
-    // c = new Path.Circle(view.center, 2);
-    // c.fillColor = 'ff00ff';
-    
-    var mouseSpotted = new Point(0, 0);
-    var hoverTowardsPoint = new Point(0, 0);
     
     view.draw();
     
     tool.onMouseMove = function(event) {
-        //group.firstChild.position.x = view.center.x - (view.center.x - event.point.x) / 10.0;
-        //group.firstChild.position.y = view.center.y - (view.center.y - event.point.y) / 10.0;
-        //if(event.point.x - view.center.x < 300 && event.point.y - view.center.y < 300) {
-            //if(Math.random() < 1.1) {
-                mouseSpotted = event.point;
-            //}
-        //}
         g4.position.x = view.center.x + (view.center.x - event.point.x) / 7.0;
         g4.position.y = view.center.y + (view.center.y - event.point.y) / 10.0;
         g5.position.x = view.center.x + (view.center.x - event.point.x) / 12.0;
@@ -113,87 +88,47 @@ $(function() {
             shiverLoop(); 
         }, 200);
     
-    hoveringR1.blinkenDelays 
-        = blinkenLengths[parseInt(Math.random() * blinkenLengths.length)];
-    hoveringR2.blinkenDelays 
-        = blinkenLengths[parseInt(Math.random() * blinkenLengths.length)];
-        
-    setTimeout(function() {blinkR(hoveringR1);}, 1000);
-    setTimeout(function() {blinkR(hoveringR2);}, 1400);
-    
 });
 
 function shiverLoop() {
-    hoveringR1.counter += 1;
-    hoveringR2.counter += 1;
-    /*
-    shiver the hoverings a bit
-    hoveringR1.g.position.x = hoveringR1.position.x + 1.5 - Math.random() * 3;
-    hoveringR1.g.position.y = hoveringR1.position.y + 1.5 - Math.random() * 3;
-    hoveringR2.g.position.x = hoveringR2.position.x + 1.5 - Math.random() * 3;
-    hoveringR2.g.position.y = hoveringR2.position.y + 1.5 - Math.random() * 3;
-    */
     
-    /*
-    if(hoveringR1.counter > 42) {
-        hoveringR1.position.x = view.center.x + 75 - Math.random() * 150;
-        hoveringR1.position.y = view.center.y + 30 - Math.random() * 60;
-        hoveringR1.counter = 0;
-    }
-    if(hoveringR2.counter > 36) {
-        hoveringR2.position.x = view.center.x + 100 - Math.random() * 200;
-        hoveringR2.position.y = view.center.y + 50 - Math.random() * 100;
-        hoveringR2.counter = 0;
-    }
+    var randSpeedX = Math.random() * 3 - 1.5;
+    var randSpeedY = Math.random() * 3 - 1.5;
     
-    if(hoveringR1.counter > 6) {
-        hoveringR1.g.opacity = 0.0;
-    } else {
-        hoveringR1.g.opacity += -0.1 + Math.random() * 0.3;
+    if(circles[0].fillColor.red >= 0.8) {
+        circleData.redSpeed = -0.001;
+    } else if(circles[0].fillColor.red <= 0.2) {
+        circleData.redSpeed = 0.001;
     }
-    if(hoveringR2.counter > 8) {
-        hoveringR2.g.opacity = 0.0;
-    } else {
-        hoveringR2.g.opacity += -0.1 + Math.random() * 0.2;
+    if(circles[0].fillColor.blue >= 0.8) {
+        circleData.blueSpeed = -0.001;
+    } else if(circles[0].fillColor.blue <= 0.2) {
+        circleData.blueSpeed = 0.001;
     }
-    */
-/*  
-    g4.position.x = view.center.x + (view.center.x - mouseSpotted.x) / 18.0;
-    g4.position.y = view.center.y + (view.center.y - mouseSpotted.y) / 18.0;
-    g5.position.x = view.center.x + (view.center.x - hoverTowardsPoint.x) / 24.0;
-    g5.position.y = view.center.y + (view.center.y - hoverTowardsPoint.y) / 24.0;
-*/
+    if(circles[0].fillColor.green >= 0.8) {
+        circleData.greenSpeed = -0.001;
+    } else if(circles[0].fillColor.green <= 0.2) {
+        circleData.greenSpeed = 0.001;
+    }
+        
+    for(i = 0; i < circles.length; i++) {
+        circles[i].fillColor.red += circleData.redSpeed;
+        circles[i].fillColor.green += circleData.greenSpeed;
+        circles[i].fillColor.blue += circleData.blueSpeed;
+        circles[i].position.x += randSpeedX;
+        circles[i].position.y += randSpeedY;
+    }
+    circleData.hilightIndex++;
+    if(circleData.hilightIndex > 100) {
+        circleData.hilightIndex = 0;
+    }
     view.draw();
-    
     setTimeout(function() {shiverLoop();}, 200);
 }
 
-function blinkR(rElement) {
-    if(rElement.g.opacity > 0) {
-        rElement.g.opacity = 0;
-    } else {
-        rElement.g.opacity = 0.5 + Math.random() * 0.5;
-    }
-    view.draw();
 
-    if(rElement.blinkenDelays.length == rElement.curBlinkenDelayIndex) {
-        rElement.curBlinkenDelayIndex = 0;
-        rElement.blinkenDelays = null;
-        rElement.blinkenDelays = blinkenLengths[
-                                        parseInt(Math.random() * blinkenLengths.length)
-                                        ];
-        rElement.g.position.x = view.center.x + 75 - Math.random() * 150;
-        rElement.g.position.y = view.center.y + 30 - Math.random() * 60;
-        setTimeout(function() { blinkR(rElement); }, 1000 + 10000 * Math.random());
-        rElement.g.opacity = 0; // make sure were off..
-        return;
-    }
-    
-    setTimeout(
-        function() { blinkR(rElement); }, 
-        rElement.blinkenDelays[rElement.curBlinkenDelayIndex++]
-        );
-}
+
+
 
 
 function getReunaLogoGroup(scale, color1, color2, pos) {
@@ -207,7 +142,6 @@ function getReunaLogoGroup(scale, color1, color2, pos) {
     g.translate(pos);
     return g;
 }
-
 
 function drawReunaTop(fColor) {
     var rtop = new Path();
