@@ -4,6 +4,7 @@ $(function() {
   window_width = 0;
   window_height = 0;
   current_section = 0;
+  total_sections = 0;
   
   resizeHandler = function() {
     window_width = $(window).width();
@@ -16,13 +17,49 @@ $(function() {
       $(window).resize(resizeHandler);
       resizeHandler();
       $('ul#nav').find('li').each(function(k,v){
+        total_sections++;
         $(this).click(function(){
-          current_section = k;
-          $('html,body').animate({scrollTop:window_height*k},'slow');
+          //current_section = k;
+          //$('html,body').animate({scrollTop:window_height*k},'slow');
+          gotoView(k);
         });
       });
+      $(window).keyup(keyDown);
   }
+  
+  keyDown = function(e) {
+    switch(e.keyCode) {
+      case 37:
+        break;
+      case 39:
+        break;    
+      case 38:
+        prevView();
+        break;
+      case 40:
+        nextView();
+        break;
+    }
+  }
+  
+  nextView = function() {
+    if (current_section>=total_sections) {return;}
+    gotoView(current_section+1);
+  }
+  
+  prevView = function() {
+    if (current_section<=0) {return;}
+    gotoView(current_section-1);
+  }
+  
+  gotoView = function(i) {
+    if (i>=total_sections) {return;}
+    current_section=i;
+    $('html,body').animate({scrollTop:window_height*i},'slow');
+  }
+  
   init();
+  
 });
 
 
