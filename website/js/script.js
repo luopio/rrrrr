@@ -50,7 +50,7 @@ $(function() {
     
     for(i = 0; i < 50; i++) {
         var c = new Path.Circle(new Point(circleData.centerX, circleData.centerY), 
-                                    1050 - 20 * i);
+                                    1050 - 20 * i * i / 50);
         c.fillColor = new paper.RGBColor(0.4, 1 - 0.02 * i, 0.8 - i * 0.01);
         c.strokeColor = 'black';
         circles.push(c);
@@ -115,8 +115,8 @@ function shiverLoop() {
         circles[i].fillColor.red += circleData.redSpeed;
         circles[i].fillColor.green += circleData.greenSpeed;
         circles[i].fillColor.blue += circleData.blueSpeed;
-        circles[i].position.x += randSpeedX;
-        circles[i].position.y += randSpeedY;
+        //circles[i].position.x += randSpeedX;
+        //circles[i].position.y += randSpeedY;
     }
     circleData.hilightIndex++;
     if(circleData.hilightIndex > 100) {
