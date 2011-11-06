@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
 	<link href='http://fonts.googleapis.com/css?family=News+Cycle|Comfortaa' rel='stylesheet' type='text/css'>
   <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  <style>.section{width:0;height:0;}</style>
 </head>
 <body>
   <nav><ul id="nav">
@@ -23,32 +24,26 @@
     <li>&para; COLORTV</li>
     <li>&para; CONTACT</li>
   </ul></nav>
-  <div id="building">
-    <div>
-      <div id="reuna" class="section">
-        <canvas id="reunacanvas" resize></canvas>
-      </div>
+  <div id="container">
+    <div id="reuna" class="section">
+      <canvas id="reunacanvas" resize></canvas>
     </div>
-    <div>
-      <div id="archiveflow" class="section">
-        <canvas></canvas>
-      </div>
+    <div id="archiveflow" class="section">
+      <canvas></canvas>
     </div>
-    <div>
-      <div id="historyflow" class="section">
-        <canvas></canvas>
-      </div>
+    <div id="historyflow" class="section">
+      <canvas></canvas>
     </div>
-    <div>
-      <div id="colortv" class="section">
-        <canvas></canvas>
-      </div>
+    <div id="colortv" class="section">
+      <canvas id='colortvcanvas' resize></canvas>
     </div>
-    <div>
-      <div id="contact" class="section">
-        <canvas></canvas>
-      </div>
+    <div id="contact" class="section">
+      <canvas></canvas>
+      <p><a href="mailto:info@reunabureau.com">info@reunabureau.com</a></p>
     </div>
+  </div>
+  <div class="resources hidden">
+  <img src="images/sample01.jpg" id="sample01">
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

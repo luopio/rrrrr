@@ -14,7 +14,7 @@ body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', s
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
-a { color: #00e; }
+a { color: #222;text-decoration:none; }
 a:visited { color: #551a8b; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
@@ -77,8 +77,10 @@ ul#nav li:hover {color:#60c;}
 #reuna {background-color:#dbdbdb;}
 #archiveflow {background:url(../images/archiveflow-1.jpg) center center no-repeat; background-size:100%;}
 #historyflow {background-color:#fcf;}
-#contact {}
 #colortv {background-color:#ccf;}
+#contact {text-align:center;}
+#contact p {font-size:30px;position:relative;top:30%;}
+
 
 
 /* ==|== non-semantic helper classes ======================================== */
