@@ -87,7 +87,7 @@ $(function() {
     // it is clean in this main document.ready
     //
     // First initCanvas(), then end with endCanvas()
-    //
+    // It is also necessary to put some stuff inside with(paper){ } .
     
     initCanvas('reunacanvas');
     drawReunaCanvas();
@@ -158,39 +158,40 @@ drawReunaCanvas = function() {
 }
 
 function shiverLoop() {
+    with (paper) {
+      var randSpeedX = Math.random() * 3 - 1.5;
+      var randSpeedY = Math.random() * 3 - 1.5;
     
-    var randSpeedX = Math.random() * 3 - 1.5;
-    var randSpeedY = Math.random() * 3 - 1.5;
-    
-    if(circles[0].fillColor.red >= 0.8) {
-        circleData.redSpeed = -0.001;
-    } else if(circles[0].fillColor.red <= 0.2) {
-        circleData.redSpeed = 0.001;
-    }
-    if(circles[0].fillColor.blue >= 0.8) {
-        circleData.blueSpeed = -0.001;
-    } else if(circles[0].fillColor.blue <= 0.2) {
-        circleData.blueSpeed = 0.001;
-    }
-    if(circles[0].fillColor.green >= 0.8) {
-        circleData.greenSpeed = -0.001;
-    } else if(circles[0].fillColor.green <= 0.2) {
-        circleData.greenSpeed = 0.001;
-    }
+      if(circles[0].fillColor.red >= 0.8) {
+          circleData.redSpeed = -0.001;
+      } else if(circles[0].fillColor.red <= 0.2) {
+          circleData.redSpeed = 0.001;
+      }
+      if(circles[0].fillColor.blue >= 0.8) {
+          circleData.blueSpeed = -0.001;
+      } else if(circles[0].fillColor.blue <= 0.2) {
+          circleData.blueSpeed = 0.001;
+      }
+      if(circles[0].fillColor.green >= 0.8) {
+          circleData.greenSpeed = -0.001;
+      } else if(circles[0].fillColor.green <= 0.2) {
+          circleData.greenSpeed = 0.001;
+      }
         
-    for(i = 0; i < circles.length; i++) {
-        circles[i].fillColor.red += circleData.redSpeed;
-        circles[i].fillColor.green += circleData.greenSpeed;
-        circles[i].fillColor.blue += circleData.blueSpeed;
-        //circles[i].position.x += randSpeedX;
-        //circles[i].position.y += randSpeedY;
+      for(i = 0; i < circles.length; i++) {
+          circles[i].fillColor.red += circleData.redSpeed;
+          circles[i].fillColor.green += circleData.greenSpeed;
+          circles[i].fillColor.blue += circleData.blueSpeed;
+          //circles[i].position.x += randSpeedX;
+          //circles[i].position.y += randSpeedY;
+      }
+      circleData.hilightIndex++;
+      if(circleData.hilightIndex > 100) {
+          circleData.hilightIndex = 0;
+      }
+      view.draw();
+      setTimeout(function() {shiverLoop();}, 200);
     }
-    circleData.hilightIndex++;
-    if(circleData.hilightIndex > 100) {
-        circleData.hilightIndex = 0;
-    }
-    view.draw();
-    setTimeout(function() {shiverLoop();}, 200);
 }
 
 function getReunaLogoGroup(scale, color1, color2, pos) {
