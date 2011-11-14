@@ -75,13 +75,20 @@ ul#nav li:hover {color:#60c;}
 .section {padding-top:0;height:100%;width:100%;overflow:hidden;}
 .section canvas {}
 #reuna {background-color:#dbdbdb;}
-#archiveflow {background:url(../images/archiveflow-1.jpg) center center no-repeat; background-size:100%;}
+/*#archiveflow {background:url(../images/archiveflow-1.jpg) center center no-repeat; background-size:100%;}*/
+#archiveflow {}
+#archiveflow div {width:100%;height:100%;background-scolor:#ff0;}  
 #historyflow {background-color:#fcf;}
 #colortv {background-color:#ccf;}
 #contact {text-align:center;}
 #contact p {font-size:30px;position:relative;top:30%;}
 
-
+.carousel { } 
+ 
+.carousel img {  
+    top:  0; 
+    left: 0 
+}
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }

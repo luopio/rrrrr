@@ -8,12 +8,14 @@ $(function() {
   window_height = 0;
   current_section = 0;
   total_sections = 0;
+  carousels = [];
   
   resizeHandler = function() {
     window_width = $(window).width();
     window_height = $(window).height();
     $('.section').css({'height':window_height,'width':window_width});
     $('html,body').animate({scrollTop:window_height*current_section},0);
+    scaleCarouselImages();
   }
   
   init = function() {
@@ -60,8 +62,38 @@ $(function() {
     current_section=i;
     $('html,body').animate({scrollTop:window_height*i},'slow');
   }
-  
-  init();
+  $('.carousel').cycle({
+  		fx: 'fade'
+  	});
+  scaleCarouselImages = function() {  	
+    $('.carousel').find('img').each(function(){
+      var self = $(this), imgWidth, imgHeight;
+      rootElement = ("onorientationchange" in window) ? $(document) : $(window);
+      self.css({width: "auto", height: "auto"});
+      imgWidth = this.width;
+      imgHeight = this.height;
+      imgRatio = imgWidth / imgHeight;
+    
+      bgCSS = {left: 0, top: 0}
+      bgWidth = rootElement.width();
+      bgHeight = bgWidth / imgRatio;
+    
+      // Make adjustments based on image ratio
+      // Note: Offset code provided by Peter Baker (http://ptrbkr.com/). Thanks, Peter!
+      if(bgHeight >= rootElement.height()) {
+          bgOffset = (bgHeight - rootElement.height()) /2;
+          $.extend(bgCSS, {top: "-" + bgOffset + "px"});
+      } else {
+          bgHeight = rootElement.height();
+          bgWidth = bgHeight * imgRatio;
+          bgOffset = (bgWidth - rootElement.width()) / 2;
+          $.extend(bgCSS, {left: "-" + bgOffset + "px"});
+      }
+    
+      $(this).width( bgWidth ).height( bgHeight ).filter("img").css(bgCSS);
+      });
+  }
+	init();
   
   paper.install(window);
     
