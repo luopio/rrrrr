@@ -209,11 +209,11 @@ reuna.drawReunaCanvas = function() {
       
         view.onResize = function(event) {
             g1.position.x = view.center.x;
-            g1.position.y = view.center.y;
-            g4.position.x = view.center.x + (view.center.x - event.point.x) / 8.0;
-            g4.position.y = view.center.y + (view.center.y - event.point.y) / 8.0;
-            g5.position.x = view.center.x + (view.center.x - event.point.x) / 12.0;
-            g5.position.y = view.center.y + (view.center.y - event.point.y) / 12.0;    
+            g1.position.y = view.center.y;        
+            g4.position.x = view.center.x;
+            g4.position.y = view.center.y;
+            g5.position.x = view.center.x;
+            g5.position.y = view.center.y;    
             // yeay! yet another logic to draw rectangles: counter-clockwise 
             // starting from bottom left. thanks paperjs devs..
             circleData.backgroundBox.segments[0].point.y = view.bounds.height;
