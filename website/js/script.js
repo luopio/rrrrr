@@ -97,6 +97,7 @@ $(function() {
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
       $(this).css('left', window_width-$(this).outerWidth());
+      $(this).css('visibility','visible');
       //$(this).css('background','#ff0');
     });
   }
