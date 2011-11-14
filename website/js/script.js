@@ -16,6 +16,7 @@ $(function() {
     $('.section').css({'height':window_height,'width':window_width});
     $('html,body').animate({scrollTop:window_height*current_section},0);
     scaleCarouselImages();
+    placeCarouselText();
   }
   
   init = function() {
@@ -92,6 +93,12 @@ $(function() {
     
       $(this).width( bgWidth ).height( bgHeight ).filter("img").css(bgCSS);
       });
+  }
+  placeCarouselText = function() {
+    $('.carousel').find('.carouseltext').each(function(){
+      $(this).css('left', window_width-$(this).outerWidth());
+      //$(this).css('background','#ff0');
+    });
   }
 	init();
   

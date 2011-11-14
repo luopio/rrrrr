@@ -77,17 +77,33 @@ ul#nav li:hover {color:#60c;}
 #reuna {background-color:#dbdbdb;}
 /*#archiveflow {background:url(../images/archiveflow-1.jpg) center center no-repeat; background-size:100%;}*/
 #archiveflow {}
-#archiveflow div {width:100%;height:100%;background-scolor:#ff0;}  
+#archiveflow disv {width:100%;height:100%;background-scolor:#ff0;}  
 #historyflow {background-color:#fcf;}
 #colortv {background-color:#ccf;}
 #contact {text-align:center;}
 #contact p {font-size:30px;position:relative;top:30%;}
 
 .carousel { } 
- 
 .carousel img {  
     top:  0; 
     left: 0 
+}
+.carousel .carouseltext {
+  padding:16px 10px 20px 20px;
+  float:left;
+  position:absolute;
+  top: 100px;
+  left:400px;
+  width:300px;
+  font-size:18px;
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(255, 255, 255);
+	/* RGBa with 0.6 opacity */
+	background: rgba(255, 255, 255, 0.6);
+	/* For IE 5.5 - 7*/
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF);
+	/* For IE 8*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
 }
 
 /* ==|== non-semantic helper classes ======================================== */
