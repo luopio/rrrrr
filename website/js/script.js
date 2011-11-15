@@ -19,6 +19,8 @@ $(function() {
     placeCarouselText();
   }
   
+  $(window).load(function() { scaleCarouselImages(); });
+  
   init = function() {
       $(window).resize(resizeHandler);
       resizeHandler();
@@ -66,7 +68,8 @@ $(function() {
   $('.carousel').cycle({
   		fx: 'fade'
   	});
-  scaleCarouselImages = function() {  	
+  scaleCarouselImages = function() {
+    /* Custom stuff based on jQuery Backstretch 1.2.4 http://srobbin.com/jquery-plugins/jquery-backstretch/ */
     $('.carousel').find('img').each(function(){
       var self = $(this), imgWidth, imgHeight;
       rootElement = ("onorientationchange" in window) ? $(document) : $(window);
@@ -90,7 +93,7 @@ $(function() {
           bgOffset = (bgWidth - rootElement.width()) / 2;
           $.extend(bgCSS, {left: "-" + bgOffset + "px"});
       }
-    
+      $.extend(bgCSS, {visibility: 'visible'});
       $(this).width( bgWidth ).height( bgHeight ).filter("img").css(bgCSS);
       });
   }
@@ -98,7 +101,6 @@ $(function() {
     $('.carousel').find('.carouseltext').each(function(){
       $(this).css('left', window_width-$(this).outerWidth());
       $(this).css('visibility','visible');
-      //$(this).css('background','#ff0');
     });
   }
 	init();

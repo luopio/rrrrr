@@ -79,14 +79,15 @@ ul#nav li:hover {color:#60c;}
 #content {}
 #contentflow disv {width:100%;height:100%;background-scolor:#ff0;}  
 #timeflow {background-color:#fff;}
-#colortv {background-color:#fff;}
+#colortv {background-color:#000;}
 #contact {text-align:center;}
 #contact p {font-size:30px;position:relative;top:30%;}
 
 .carousel { } 
 .carousel img {  
-    top:  0; 
-    left: 0 
+    top:  0;
+    left: 0;
+    position:absolute;
 }
 .carousel .carouseltext {
   padding:16px 10px 20px 20px;
