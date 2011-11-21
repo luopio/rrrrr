@@ -133,48 +133,66 @@ $(function() {
 var LINES = [];
 var HEIGHT = 100.0;
 var PREVUPDATE = 0;
+var SPEEDFACTOR = 1.2;
+var COLORS = [
+                new paper.RGBColor(1.0, 0.2, 0.1), 
+                new paper.RGBColor(0.1, 0.3, 0.9),
+                new paper.RGBColor(0.4, 0.2, 0.1),
+                new paper.RGBColor(0.2, 1.0, 0.3),
+                new paper.RGBColor(0.8, 1.0, 0.1)
+            ];
 
 reuna.initCanvas = function(canvasName) {
-  var newPaper = new paper.PaperScope(); 
-  newPaper.setup(canvasName);
+    var newPaper = new paper.PaperScope(); 
+    newPaper.setup(canvasName);
 }
 
 reuna.endCanvas = function() {
-  paper.view.draw();
+    paper.view.draw();
 }
 
 reuna.drawReunaCanvas = function() {
     with(paper) {
         var tool = new Tool();
-
-        /* draw the circles for the background */
-        for(i = 5; i > 0; i--) {
+        
+        // draw the mounds
+        for(i = 0; i < COLORS.length; i++) {
             var l = new Path();
-            var p = new Point(view.center.x, //+ Math.random() * 500 - 250, 
-                                view.center.y);  //+ Math.random() * 100 - 50);
-            l._originalYs = [p.y];
-            l._previousRoundYDelta = 0;
-            l._previousRoundY = p.y;
             
             l.add(new Segment(
                 new Point(view.bounds.bottomLeft.x, view.bounds.bottomLeft.y + 100),
                 new Point(0, 200), 
                 new Point(Math.random() * 100, Math.random() * -200)
                 ));
-            l.add(new Segment(p, 
-                new Point(Math.random() * 100 - 200, Math.random() * 200), 
-                new Point(Math.random() * 100 + 200, Math.random() * 200)
-                ));
+            
+            l._originalYs = [];
+            var pointAmount = Math.random() * 3 + 1;
+            var pX = 0;
+            var d = view.bounds.width / pointAmount;
+            for(ii = 0; ii < pointAmount; ii++) {
+                pX += d;
+                var p = new Point(pX, 
+                                view.center.y / 2.2 + Math.random() * 200 - 100);
+                l.add(new Segment(p, 
+                    new Point(Math.random() * -300, Math.random() * 0), 
+                    new Point(Math.random() * 300, Math.random() * 0)
+                    ));
+                l._originalYs.push(p.y);
+            }
+
             l.add(new Segment(
                 new Point(view.bounds.bottomRight.x, view.bounds.bottomLeft.y + 100),
                 new Point(Math.random() * -100, Math.random() * -200),
                 new Point(0, 200)
                 ));
             
+            l._previousRoundYDelta = 0;
+            l._previousRoundY = l._originalYs[0];
+                        
             l.closed = true;
-//            l.fullySelected = true;
+            // l.fullySelected = true;
             l.strokeColor = null;
-            l.fillColor = new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
+            l.fillColor = COLORS[i]; // new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
             l.strokeWidth = 5;
             LINES.push(l);
         }
@@ -192,6 +210,7 @@ reuna.drawReunaCanvas = function() {
         view.draw();
 
         tool.onMouseMove = function(event) {
+            SPEEDFACTOR = 1.1 - event.point.y / view.bounds.height / 2;
         }
       
         view.onResize = function(event) {
@@ -213,29 +232,29 @@ function update(event) {
             
             for(li in LINES) {
                 
-                var s = event.time / 2.0;
+                var s = event.time / SPEEDFACTOR;
                 var r = 2 * Math.PI * (li / LINES.length);
-                // var w = HEIGHT * Math.sin(f - Math.PI * 0.25);
                 var sval = Math.sin(s + r);
                 
-                var currentY = view.size.height + LINES[li]._originalYs[0] * sval;
+                var currentY = 0;
+                for(yi = 0; yi < LINES[li]._originalYs.length; yi++) {
+                    currentY = view.size.height + LINES[li]._originalYs[yi] * sval;
+                    LINES[li].segments[yi + 1].point.y = currentY;                    
+                }
                 var currentDelta = LINES[li]._previousRoundY - currentY;
                 if(LINES[li]._previousRoundYDelta < 0 
                     && (currentDelta > 0 || currentDelta == 0)) 
                 {
-                    console.log('move ' + li)
                     project.activeLayer.insertChild(0, LINES[li]);
                 }
                 LINES[li]._previousRoundYDelta = currentDelta;
                 LINES[li]._previousRoundY = currentY;
-                LINES[li].segments[1].point.y = currentY;
                                     
-                //LINES[li].segments[0].point.x = -w - HEIGHT;
-                //LINES[li].segments[2].point.x = view.size.width + w + HEIGHT;
+                LINES[li].segments[0].point.x = -100 * -sval;
+                LINES[li].lastSegment.point.x = view.size.width + 100 * -sval;
                 
-                //LINES[li].segments[0].point.y = h;
-                //LINES[li].segments[2].point.y = h;
-
+                LINES[li].segments[0].point.y = (view.bounds.bottomLeft.y + 100) + 50 * sval;
+                LINES[li].lastSegment.point.y = (view.bounds.bottomLeft.y + 100) + 50 * sval;
                 
             }
             view.draw();
