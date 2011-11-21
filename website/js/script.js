@@ -204,11 +204,11 @@ reuna.drawReunaCanvas = function() {
             l._originalYs = [];
             var pointAmount = Math.random() * 3 + 1;
             var pX = 0;
-            var d = view.bounds.width / pointAmount;
+            var d = view.bounds.width / (pointAmount + 1);
             for(ii = 0; ii < pointAmount; ii++) {
                 pX += d;
                 var p = new Point(pX, 
-                                view.center.y / 2.2 + Math.random() * 200 - 100);
+                                Math.random() * 500);
                 l.add(new Segment(p, 
                     new Point(Math.random() * -300, Math.random() * 0), 
                     new Point(Math.random() * 300, Math.random() * 0)
@@ -230,6 +230,7 @@ reuna.drawReunaCanvas = function() {
             l.strokeColor = null;
             l.fillColor = COLORS[i]; // new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
             l.strokeWidth = 5;
+            l.visible = false;
             LINES.push(l);
         }
         
@@ -246,7 +247,7 @@ reuna.drawReunaCanvas = function() {
         view.draw();
 
         tool.onMouseMove = function(event) {
-            // SPEEDFACTOR = 1.2 - (event.point.y / view.bounds.height / 2);
+            SPEEDFACTOR = 0.8 + (event.point.y / view.bounds.height / 2);
         }
       
         view.onResize = function(event) {
@@ -282,6 +283,7 @@ function update(event) {
                     && (currentDelta > 0 || currentDelta == 0)) 
                 {
                     project.activeLayer.insertChild(0, LINES[li]);
+                    LINES[li].visible = true;
                 }
                 LINES[li]._previousRoundYDelta = currentDelta;
                 LINES[li]._previousRoundY = currentY;
