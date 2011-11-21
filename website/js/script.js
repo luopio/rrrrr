@@ -16,6 +16,7 @@ $(function() {
     $('.section').css({'height':window_height,'width':window_width});
     $('html,body').animate({scrollTop:window_height*current_section},0);
     scaleCarouselImages();
+    scaleCarouselVideos();
     placeCarouselText();
   }
   
@@ -33,6 +34,12 @@ $(function() {
         });
       });
       $(window).keyup(keyDown);
+      $('.carousel').cycle({
+      		fx: 'fade',
+      		timeout:10000,
+      		
+      	});
+      setVimeoReadyEvents();
   }
   
   keyDown = function(e) {
@@ -65,9 +72,7 @@ $(function() {
     current_section=i;
     $('html,body').animate({scrollTop:window_height*i},'slow');
   }
-  $('.carousel').cycle({
-  		fx: 'fade'
-  	});
+  
   scaleCarouselImages = function() {
     /* Custom stuff based on jQuery Backstretch 1.2.4 http://srobbin.com/jquery-plugins/jquery-backstretch/ */
     $('.carousel').find('img').each(function(){
@@ -97,12 +102,43 @@ $(function() {
       $(this).width( bgWidth ).height( bgHeight ).filter("img").css(bgCSS);
       });
   }
+  scaleCarouselVideos = function() {
+    $('.carousel').find('iframe').each(function(){
+      $(this).width( window_width ).height( window_height );
+    });
+  }
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
       $(this).css('left', window_width-$(this).outerWidth());
       $(this).css('visibility','visible');
     });
   }
+  setVimeoReadyEvents = function() {
+    var vimeoPlayers = document.querySelectorAll('iframe'), player;
+    for (var i = 0, length = vimeoPlayers.length; i < length; i++) {
+        player = vimeoPlayers[i];
+        $f(player).addEvent('ready', vimeoReady);
+    }
+  }
+  setVimeoEvent = function() {
+    
+  }
+  vimeoReady = function(player_id) {
+    var froogaloop = $f(player_id);
+    froogaloop.addEvent('play', function(data) { $('#'+data.replace('vimeo_', '')+'.carousel').cycle('pause'); });
+    froogaloop.addEvent('finish', function(data) { $('.carousel').cycle('resume'); });
+    //froogaloop.addEvent('pause', function(data) { $('.carousel').cycle('resume'); });
+  }
+  
+  addEvent = function (element, eventName, callback) {
+    if (element.addEventListener) {
+      element.addEventListener(eventName, callback, false);
+    }
+    else {
+      element.attachEvent(eventName, callback, false);
+    }
+  }
+  
 	init();
   
   paper.install(window);
