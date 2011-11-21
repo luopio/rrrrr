@@ -130,21 +130,9 @@ $(function() {
 });
 
 /* paperjs stuff below */
-var circles = [];
-var circleData = { centerX: 0, // Math.random() * 100 + 100,
-                    centerY: Math.random() * 100 + 200,
-                    hilightIndex: 0,
-                    greenSpeed: 0.01,
-                    redSpeed: 0.02,
-                    blueSpeed: -0.01,
-                    strokeSpeed: 0.8,
-                    curRed: 0.0,
-                    curBlue: 0.0,
-                    curGreen: 0.0,
-                    curStroke: 1.0,
-                    backgroundBox: null,
-                    };
-
+var LINES = [];
+var HEIGHT = 100.0;
+var PREVUPDATE = 0;
 
 reuna.initCanvas = function(canvasName) {
   var newPaper = new paper.PaperScope(); 
@@ -159,43 +147,38 @@ reuna.drawReunaCanvas = function() {
     with(paper) {
         var tool = new Tool();
 
-        // learnt lessons:
-        // - clipping only seems to work with paths. cant have 
-        //   group inside the clipping area
-        // - joining does not produce true, flat forms, simplify just messes up with curves
-        // - while clipping elements, the top element (mask) defines the color 
-        //   for the underlying elems, which sucks badly
-
-        circleData.backgroundBox = Path.Rectangle(new Point(0, 0), 
-                                        new Point(view.bounds.width, view.bounds.height));
-        circleData.backgroundBox.fillColor = 'white';
-        circleData.curRed = 2.9;
-        circleData.curGreen = 2.9;
-        circleData.curBlue = 2.9;
-
         /* draw the circles for the background */
-        for(i = 10; i > 0; i--) {
-            var c = new Path.Circle(new Point(circleData.centerX, circleData.centerY), 
-                                        i * i * i * i / 10.2);
-            c.fillColor = new paper.RGBColor();
-            c.strokeColor = new paper.RGBColor(1.0, 1.0, 1.0, 0.2);
-            circles.push(c);
+        for(i = 5; i > 0; i--) {
+            var l = new Path();
+            var p = new Point(view.center.x, //+ Math.random() * 500 - 250, 
+                                view.center.y);  //+ Math.random() * 100 - 50);
+            l._originalYs = [p.y];
+            l._previousRoundYDelta = 0;
+            l._previousRoundY = p.y;
+            
+            l.add(new Segment(
+                new Point(view.bounds.bottomLeft.x, view.bounds.bottomLeft.y + 100),
+                new Point(0, 200), 
+                new Point(Math.random() * 100, Math.random() * -200)
+                ));
+            l.add(new Segment(p, 
+                new Point(Math.random() * 100 - 200, Math.random() * 200), 
+                new Point(Math.random() * 100 + 200, Math.random() * 200)
+                ));
+            l.add(new Segment(
+                new Point(view.bounds.bottomRight.x, view.bounds.bottomLeft.y + 100),
+                new Point(Math.random() * -100, Math.random() * -200),
+                new Point(0, 200)
+                ));
+            
+            l.closed = true;
+//            l.fullySelected = true;
+            l.strokeColor = null;
+            l.fillColor = new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
+            l.strokeWidth = 5;
+            LINES.push(l);
         }
-        for(i = 0; i < circles.length; i++) {
-            circles[i].fillColor.red    = circleData.curRed / (i + 1);
-            circles[i].fillColor.green  = circleData.curGreen / (i + 1);
-            circles[i].fillColor.blue   = circleData.curBlue / (i + 1);
-            circles[i].strokeWidth = circleData.curStroke;
-        }
-       
-        g5 = reuna.getLogoGroup(3.1, 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
-                       new Point(view.center.x, view.center.y));
-        g4 = reuna.getLogoGroup(3.1, 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
-                       new Point(view.center.x, view.center.y));
+        
         g1 = reuna.getLogoGroup(3.0, 
                        //new paper.RGBColor(0.3, 0.3, 0.3), 
                        //new paper.RGBColor(0.4, 0.4, 0.4), 
@@ -205,84 +188,58 @@ reuna.drawReunaCanvas = function() {
                        new RGBColor(0.2, 0.2, 0.2));
 
         g1.opacity = 0.9;
-        g4.opacity = 0.18;
-        g5.opacity = 0.1;
 
         view.draw();
 
         tool.onMouseMove = function(event) {
-           g4.position.x = view.center.x + (view.center.x - event.point.x) / 8.0;
-           g4.position.y = view.center.y + (view.center.y - event.point.y) / 8.0;
-           g5.position.x = view.center.x + (view.center.x - event.point.x) / 12.0;
-           g5.position.y = view.center.y + (view.center.y - event.point.y) / 12.0;
         }
       
         view.onResize = function(event) {
             g1.position.x = view.center.x;
             g1.position.y = view.center.y;        
-            g4.position.x = view.center.x;
-            g4.position.y = view.center.y;
-            g5.position.x = view.center.x;
-            g5.position.y = view.center.y;    
-            // yeay! yet another logic to draw rectangles: counter-clockwise 
-            // starting from bottom left. thanks paperjs devs..
-            circleData.backgroundBox.segments[0].point.y = view.bounds.height;
-            circleData.backgroundBox.segments[2].point.x = view.bounds.width;
-            circleData.backgroundBox.segments[3].point.x = view.bounds.width;
-            circleData.backgroundBox.segments[3].point.y = view.bounds.height;
-
             view.draw();
-       }
-
-       setTimeout(function() { update(); }, 200);
+        }
+        
+        // setTimeout(function() { update(); }, 200);
+        
+        view.onFrame = update;
     }
 }
 
-function update() {
+function update(event) {
     with (paper) {
-      var randSpeedX = Math.random() * 3 - 1.5;
-      var randSpeedY = Math.random() * 3 - 1.5;
-    
-      if(circleData.curRed >= 1.5 && circleData.redSpeed > 0) {
-          circleData.redSpeed = circleData.redSpeed * -1;
-      } else if(circleData.curRed <= 0.2 && circleData.redSpeed < 0) {
-          circleData.redSpeed = circleData.redSpeed * -1;
-      }
-      if(circleData.curBlue >= 1.5 && circleData.blueSpeed > 0) {
-          circleData.blueSpeed = circleData.blueSpeed * -1;
-      } else if(circleData.curBlue <= 0.2 && circleData.blueSpeed < 0) {
-          circleData.blueSpeed = circleData.blueSpeed * -1;
-      }
-      if(circleData.curGreen >= 1.5 && circleData.greenSpeed > 0) {
-          circleData.greenSpeed = circleData.greenSpeed * -1;
-      } else if(circleData.curGreen <= 0.2 && circleData.greenSpeed < 0) {
-          circleData.greenSpeed = circleData.greenSpeed * -1;
-      }
-      if(circleData.curStroke >= 64.0 && circleData.strokeSpeed > 0) {
-          circleData.strokeSpeed = circleData.strokeSpeed * -1;
-      } else if(circleData.curStroke <= 0.9 && circleData.strokeSpeed < 0) {
-          circleData.strokeSpeed = circleData.strokeSpeed * -1;
-      }
-      
-      circleData.curRed     += circleData.redSpeed;
-      circleData.curGreen   += circleData.greenSpeed;
-      circleData.curBlue    += circleData.blueSpeed;
-      circleData.curStroke  += circleData.strokeSpeed;
-      
-      for(i = 0; i < circles.length; i++) {
-          circles[i].fillColor.red    = circleData.curRed / (i + 1);
-          circles[i].fillColor.green  = circleData.curGreen / (i + 1);
-          circles[i].fillColor.blue   = circleData.curBlue / (i + 1);
-          circles[i].strokeWidth      = circleData.curStroke / (i * i + 1);
-          //circles[i].position.x += randSpeedX;
-          //circles[i].position.y += randSpeedY;
-      }
-      /*circleData.hilightIndex++;
-      if(circleData.hilightIndex > 100) {
-          circleData.hilightIndex = 0;
-      }*/
-      view.draw();
-      setTimeout(function() { update(); }, 200);
+        if(event.time - PREVUPDATE > 0.1) {
+            PREVUPDATE = event.time;
+            
+            for(li in LINES) {
+                
+                var s = event.time / 2.0;
+                var r = 2 * Math.PI * (li / LINES.length);
+                // var w = HEIGHT * Math.sin(f - Math.PI * 0.25);
+                var sval = Math.sin(s + r);
+                
+                var currentY = view.size.height + LINES[li]._originalYs[0] * sval;
+                var currentDelta = LINES[li]._previousRoundY - currentY;
+                if(LINES[li]._previousRoundYDelta < 0 
+                    && (currentDelta > 0 || currentDelta == 0)) 
+                {
+                    console.log('move ' + li)
+                    project.activeLayer.insertChild(0, LINES[li]);
+                }
+                LINES[li]._previousRoundYDelta = currentDelta;
+                LINES[li]._previousRoundY = currentY;
+                LINES[li].segments[1].point.y = currentY;
+                                    
+                //LINES[li].segments[0].point.x = -w - HEIGHT;
+                //LINES[li].segments[2].point.x = view.size.width + w + HEIGHT;
+                
+                //LINES[li].segments[0].point.y = h;
+                //LINES[li].segments[2].point.y = h;
+
+                
+            }
+            view.draw();
+        }
     }
 }
 
