@@ -246,7 +246,7 @@ reuna.drawReunaCanvas = function() {
         view.draw();
 
         tool.onMouseMove = function(event) {
-            SPEEDFACTOR = 1.1 - event.point.y / view.bounds.height / 2;
+            // SPEEDFACTOR = 1.2 - (event.point.y / view.bounds.height / 2);
         }
       
         view.onResize = function(event) {
@@ -266,7 +266,7 @@ function update(event) {
         if(event.time - PREVUPDATE > 0.1) {
             PREVUPDATE = event.time;
             
-            for(li in LINES) {
+            for(var li = 0; li < LINES.length; li++) {
                 
                 var s = event.time / SPEEDFACTOR;
                 var r = 2 * Math.PI * (li / LINES.length);
