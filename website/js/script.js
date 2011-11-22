@@ -171,11 +171,10 @@ var HEIGHT = 100.0;
 var PREVUPDATE = 0;
 var SPEEDFACTOR = 1.9;
 var COLORS = [
-                '#020032', 
-                '#050051',
-                '#04003B',
-                '#060012',
-                '#000214'
+                '#338DC9', 
+                '#66AAD7',
+                '#99C6E4',
+                '#CCE3F2'
             ];
 
 reuna.initCanvas = function(canvasName) {
@@ -233,7 +232,7 @@ reuna.drawReunaCanvas = function() {
             l.fillColor = COLORS[i]; // new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
             l.strokeWidth = 1;
             l.visible = false;
-            l.opacity = 0.95;
+            l.opacity = 0.50;
             LINES.push(l);
         }
         
@@ -243,7 +242,7 @@ reuna.drawReunaCanvas = function() {
                        new paper.RGBColor(1.0, 1.0, 1.0), 
                        new paper.RGBColor(1.0, 1.0, 1.0), 
                        new Point(view.center.x, view.center.y / 3 * 2),
-                       new RGBColor(0.2, 0.2, 0.2));
+                       null);
 
         g1.opacity = 0.9;
 
