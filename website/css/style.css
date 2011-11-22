@@ -66,9 +66,9 @@ td { vertical-align: top; }
 
 #container {}
 ul#nav {position:fixed;top:25px;left:25px;z-index:200000; letter-spacing:1.5px; font-size:11px;}
-ul#nav li {cursor:pointer; line-height:1.8; color:rgba(0, 0, 0, 0.4);}
+ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128);}
 ul#nav li:first-child {margin-bottom:10px;}
-ul#nav li:first-letter {color:rgba(0, 0, 0, 0.2);}
+ul#nav li:first-letter {color:rgba(255, 255, 255, 164);}
 #logo { padding-bottom:15px; border-bottom:1px solid #000; border-color:rgba(0, 0, 0, 0.1);}
 ul#nav li:hover {color:#60c;}
 
@@ -106,6 +106,18 @@ ul#nav li:hover {color:#60c;}
 	/* For IE 8*/
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
 }
+
+h1#reunaslogan {
+    z-index: 2000;
+    margin: auto;
+    position: absolute;
+    top: 70%;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-size: 2.5em;
+}
+
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
