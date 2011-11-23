@@ -110,7 +110,7 @@ $(function() {
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
       //$(this).css('left', window_width-$(this).outerWidth());
-      $(this).css('width', $(this).width( window_width ));
+      $(this).css('height', $(this).height( window_height ));
       $(this).css('visibility','visible');
     });
   }
@@ -255,7 +255,7 @@ reuna.drawReunaCanvas = function() {
       
         view.onResize = function(event) {
             g1.position.x = view.center.x;
-            g1.position.y = view.center.y;        
+            g1.position.y = view.center.y;
             view.draw();
         }
         

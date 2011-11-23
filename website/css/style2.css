@@ -86,7 +86,7 @@ ul#nav li:hover {color:#60c;}
 
 .carousel { } 
 .carousel img {top:0; left:0; position:absolute;}
-.carouseltext {padding:20px 20px 20px 200px; position:absolute; top:0; left:0; width:100%; height:80px; font-size:16px; color:#333;
+.carouseltext {padding:120px 20px 20px 20px; position:absolute; top:0; left:0; width:200px; height:100%; font-size:16px; color:#333;
 	/* Fallback for web browsers that doesn't support RGBa */
 	background:rgb(255, 255, 255);
 	/* RGBa with opacity */
