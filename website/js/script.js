@@ -110,7 +110,7 @@ $(function() {
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
       //$(this).css('left', window_width-$(this).outerWidth());
-      $(this).css('width', $(this).outerWidth());
+      $(this).css('width', $(this).width( window_width ));
       $(this).css('visibility','visible');
     });
   }

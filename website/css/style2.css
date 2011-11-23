@@ -70,7 +70,7 @@ ul#nav {position:fixed;top:25px;left:25px;z-index:200000; letter-spacing:1.5px; 
 ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128); visibility:hidden; }
 ul#nav li:first-child {margin-bottom:10px; visibility:visible;}
 ul#nav li:first-letter {color:rgba(255, 255, 255, 164);}
-#logo { padding-bottom:15px; border-bottom:1px solid #fff; border-color:rgba(255, 255, 255, 0.1);}
+#logo { padding-bottom:15px; border-bottom:6px solid #0089f9; border-color:rgba(0, 137, 250, 0.8);}
 ul#nav li:hover {color:#60c;}
 
 .section {background:#eee;height:100%;width:100%;overflow:hidden;}
@@ -86,11 +86,11 @@ ul#nav li:hover {color:#60c;}
 
 .carousel { } 
 .carousel img {top:0; left:0; position:absolute;}
-.carouseltext {padding:20px 20px 20px 200px; position:absolute; top:0; left:0; height:auto; font-size:18px; color:#fff;
+.carouseltext {padding:20px 20px 20px 200px; position:absolute; top:0; left:0; width:100%; height:80px; font-size:16px; color:#333;
 	/* Fallback for web browsers that doesn't support RGBa */
-	background:rgb(0, 0, 0);
+	background:rgb(255, 255, 255);
 	/* RGBa with opacity */
-	background:rgba(0, 0, 0, 0.4);
+	background:rgba(255, 255, 255, 0.99);
 	/* For IE 5.5 - 7*/
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#22FFFFFF, endColorstr=#22FFFFFF);
 	/* For IE 8*/
