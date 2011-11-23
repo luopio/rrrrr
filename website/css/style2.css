@@ -86,7 +86,7 @@ ul#nav li:hover {color:#60c;}
 
 .carousel { } 
 .carousel img {top:0; left:0; position:absolute;}
-.carouseltext {padding:120px 20px 20px 20px; position:absolute; top:0; left:0; width:200px; height:100%; font-size:16px; color:#333;
+.carouseltext {padding:0; position:absolute; top:0; left:0; height:80px; font-size:16px; color:#333;
 	/* Fallback for web browsers that doesn't support RGBa */
 	background:rgb(255, 255, 255);
 	/* RGBa with opacity */
@@ -96,6 +96,7 @@ ul#nav li:hover {color:#60c;}
 	/* For IE 8*/
 	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#22FFFFFF, endColorstr=#22FFFFFF)";
 }
+.carouseltext p {padding:0 200px;background:#ccc;margin:0 auto;}
 h1#reunaslogan {z-index:2000; margin:auto; position:absolute; top:70%; text-align:center; width:100%; color:#fff; font-size:2.5em;}
 
 

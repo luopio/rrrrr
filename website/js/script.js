@@ -109,8 +109,7 @@ $(function() {
   }
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
-      //$(this).css('left', window_width-$(this).outerWidth());
-      $(this).css('height', $(this).height( window_height ));
+      $(this).css('width', window_width);
       $(this).css('visibility','visible');
     });
   }
