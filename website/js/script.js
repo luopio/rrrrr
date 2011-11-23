@@ -47,7 +47,7 @@ $(function() {
       case 37:
         break;
       case 39:
-        break;    
+        break;
       case 38:
         prevView();
         break;
@@ -109,7 +109,8 @@ $(function() {
   }
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
-      $(this).css('left', window_width-$(this).outerWidth());
+      //$(this).css('left', window_width-$(this).outerWidth());
+      $(this).css('width', $(this).outerWidth());
       $(this).css('visibility','visible');
     });
   }
@@ -209,7 +210,7 @@ reuna.drawReunaCanvas = function() {
                 var p = new Point(pX, 
                                 Math.random() * 130 + 50);
                 l.add(new Segment(p, 
-                    new Point(Math.random() * -100 - 100, Math.random() * 50), 
+                    new Point(Math.random() * -100 - 100, Math.random() * 50),
                     new Point(Math.random() * -100, Math.random() * 80 + 140)
                     ));
                 l._originalYs.push(p.y);
