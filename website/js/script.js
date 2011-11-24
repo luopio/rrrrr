@@ -10,6 +10,8 @@ $(function() {
   total_sections = 0;
   carousels = [];
   
+  $('.carouseltext').animate({width:'hide'}, 0); // Hide in the beginning
+  
   resizeHandler = function() {
     window_width = $(window).width();
     window_height = $(window).height();
@@ -17,8 +19,13 @@ $(function() {
     $('html,body').animate({scrollTop:window_height*current_section},0);
     scaleCarouselImages();
     scaleCarouselVideos();
-    placeCarouselText();
+    //placeCarouselText();
   }
+  
+  $('#info').click(function() {
+		$('.carouseltext').delay(50).animate({width:'toggle'}, 300);
+		//$('#info').css("background", 'black').css("color",'white');
+	});
   
   $(window).load(function() { scaleCarouselImages(); });
   
