@@ -176,6 +176,7 @@ $(function() {
 var SPEEDFACTOR = 1.9;
 var YSPEED = 0;
 var XSPEED = 0;
+var PREVUPDATE = 0;
 
 reuna.initCanvas = function(canvasName) {
     var newPaper = new paper.PaperScope(); 
@@ -229,6 +230,23 @@ function update(event) {
                 XSPEED -= 0.5;
             }
             PREVUPDATE = event.time;
+            
+            // point (0,1), in(2,3), out(4,5)
+            
+            // rightmost point of half-circle
+            g1.firstChild.segments[2].handleOut.x = 
+                g1.firstChild._originals[2][4] + Math.sin(event.time + Math.PI) * 40;
+            g1.firstChild.segments[2].handleIn.x = 
+                g1.firstChild._originals[2][2] + Math.sin(event.time) * 40;
+
+            // leftmost bottom of triangle
+            g1.lastChild.segments[2].handleOut.x = 
+                g1.lastChild._originals[2][4] + Math.sin(event.time) * 40;
+                
+            g1.lastChild.segments[0].handleIn.x = 
+                g1.lastChild._originals[0][2] + Math.sin(event.time) * 40;
+
+            
             view.draw();
         }
     }
@@ -247,11 +265,25 @@ reuna.getLogoGroup = function(scale, color1, color2, pos, strokeColor) {
 
 reuna.drawLogoTop = function(fColor, sColor) {
     var rtop = new Path();
-    rtop.add(new Point(-30, -40));  
+    rtop._originals = [];
+    
+    // fixme: abstract the points to a separate array and loop 
+    // to make changes easier
+    rtop.add(new Point(-30, -40));
+    rtop._originals.push([-30, -40, 0, 0, 0, 0]);
+    
     rtop.add(new Segment(new Point(-2.5, -40), null, new Point(17.5, 0)));
+    rtop._originals.push([-2.5, -40, 0, 0, 17.5, 0]);
+    
     rtop.add(new Segment(new Point(30, -12.5), new Point(0, -17.5), new Point(0, 17.5)));
+    rtop._originals.push([30, -12.5, 0, -17.5, 0, 17.5]);
+
     rtop.add(new Segment(new Point(-2.5, 15), new Point(17.5, 0), null));
+    rtop._originals.push([-2.5, 15, 17.5, 0, 0, 0]);
+    
     rtop.add(new Point(-30, 15));
+    rtop._originals.push([-30, 15, 0, 0, 0, 0]);
+        
     rtop.closed = true;
     if(sColor) {
         rtop.strokeColor = sColor;
@@ -260,14 +292,22 @@ reuna.drawLogoTop = function(fColor, sColor) {
         rtop.strokeColor = null;
     }
     rtop.fillColor = fColor;
+    rtop.fullySelected = true;
     return rtop;
 }
 
 reuna.drawLogoBottom = function(fColor, sColor) {
     var rbottom = new Path();
+    rbottom._originals = [];
     rbottom.add(new Point(-30, -20));
+    rbottom._originals.push([-30, -20, 0, 0, 0, 0]);
+    
     rbottom.add(new Point(30, 40));
+    rbottom._originals.push([30, 40, 0, 0, 0, 0]);
+    
     rbottom.add(new Point(-30, 40));
+    rbottom._originals.push([-30, 40, 0, 0, 0, 0]);
+    
     rbottom.closed = true;
     if(sColor) {
         rbottom.strokeColor = sColor;
@@ -276,5 +316,6 @@ reuna.drawLogoBottom = function(fColor, sColor) {
         rbottom.strokeColor = null;
     }
     rbottom.fillColor = fColor; 
+    rbottom.fullySelected = true;
     return rbottom;
 }
