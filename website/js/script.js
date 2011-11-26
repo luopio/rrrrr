@@ -166,16 +166,9 @@ $(function() {
 });
 
 /* paperjs stuff below */
-var LINES = [];
-var HEIGHT = 100.0;
-var PREVUPDATE = 0;
 var SPEEDFACTOR = 1.9;
-var COLORS = [
-                '#338DC9', 
-                '#66AAD7',
-                '#99C6E4',
-                '#CCE3F2'
-            ];
+var YSPEED = 0;
+var XSPEED = 0;
 
 reuna.initCanvas = function(canvasName) {
     var newPaper = new paper.PaperScope(); 
@@ -191,58 +184,13 @@ reuna.drawReunaCanvas = function() {
         var tool = new Tool();
         
         // draw the mounds
-        for(i = 0; i < COLORS.length; i++) {
-            var l = new Path();
-            
-            l.add(new Segment(
-                new Point(view.bounds.bottomLeft.x, view.bounds.bottomLeft.y + 100),
-                new Point(0, 200), 
-                new Point(Math.random() * 100, Math.random() * -200)
-                ));
-            
-            l._originalYs = [];
-            l._originalXs = [];
-            var pointAmount = Math.random() * 3 + 2;
-            var pX = 0;
-            var d = view.bounds.width / pointAmount;
-            for(ii = 0; ii < pointAmount; ii++) {
-                var p = new Point(pX, 
-                                Math.random() * 130 + 50);
-                l.add(new Segment(p, 
-                    new Point(Math.random() * -100 - 100, Math.random() * 50), 
-                    new Point(Math.random() * -100, Math.random() * 80 + 140)
-                    ));
-                l._originalYs.push(p.y);
-                l._originalXs.push(p.x);
-                pX += d;
-            }
-
-            l.add(new Segment(
-                new Point(view.bounds.bottomRight.x, view.bounds.bottomLeft.y + 100),
-                new Point(Math.random() * -100, Math.random() * -200),
-                new Point(0, 200)
-                ));
-            
-            l._previousRoundYDelta = 0;
-            l._previousRoundY = l._originalYs[0];
-                        
-            l.closed = true;
-            // l.fullySelected = true;
-            l.strokeColor = '#fff';
-            l.fillColor = COLORS[i]; // new RGBColor(0.15 * i % 2, 0.15 * i % 3, 0.15 * i % 4);
-            l.strokeWidth = 1;
-            l.visible = false;
-            l.opacity = 0.50;
-            LINES.push(l);
-        }
-        
-        g1 = reuna.getLogoGroup(3.0, 
+        g1 = reuna.getLogoGroup(2.0, 
                        //new paper.RGBColor(0.3, 0.3, 0.3), 
                        //new paper.RGBColor(0.4, 0.4, 0.4), 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
-                       new paper.RGBColor(1.0, 1.0, 1.0), 
+                       new paper.RGBColor(0.2, 0.3, 0.3), 
+                       new paper.RGBColor(0.3, 0.2, 0.2), 
                        new Point(view.center.x, view.center.y / 3 * 2),
-                       null);
+                       new paper.RGBColor(1.0, 1.0, 1.0));
 
         g1.opacity = 0.9;
 
@@ -267,39 +215,13 @@ reuna.drawReunaCanvas = function() {
 function update(event) {
     with (paper) {
         if(event.time - PREVUPDATE > 0.1) {
-            PREVUPDATE = event.time;
-            
-            for(var li = 0; li < LINES.length; li++) {
-                
-                var s = event.time / SPEEDFACTOR;
-                var r = 2 * Math.PI * (li / LINES.length);
-                var sval = Math.sin(s + r);
-                var sval2 = Math.sin(s + r + Math.PI * 0.5);
-                
-                var currentY = 0;
-                for(yi = 0; yi < LINES[li]._originalYs.length; yi++) {
-                    currentY = view.size.height + LINES[li]._originalYs[yi] * sval;
-                    currentX = LINES[li]._originalXs[yi] + 200 * sval2;
-                    LINES[li].segments[yi + 1].point.y = currentY;
-                    LINES[li].segments[yi + 1].point.x = currentX;
-                }
-                var currentDelta = LINES[li]._previousRoundY - currentY;
-                if(LINES[li]._previousRoundYDelta < 0 
-                    && (currentDelta > 0 || currentDelta == 0)) 
-                {
-                    project.activeLayer.insertChild(0, LINES[li]);
-                    LINES[li].visible = true;
-                }
-                LINES[li]._previousRoundYDelta = currentDelta;
-                LINES[li]._previousRoundY = currentY;
-                                    
-                LINES[li].segments[0].point.x = -100 * -sval;
-                LINES[li].lastSegment.point.x = view.size.width + 100 * -sval;
-                
-                LINES[li].segments[0].point.y = (view.bounds.bottomLeft.y + 100) + 50 * sval;
-                LINES[li].lastSegment.point.y = (view.bounds.bottomLeft.y + 100) + 50 * sval;
-                
+            if(YSPEED > 0) {
+                YSPEED -= 0.5;
             }
+            if(XSPEED > 0) {
+                XSPEED -= 0.5;
+            }
+            PREVUPDATE = event.time;
             view.draw();
         }
     }
@@ -326,7 +248,7 @@ reuna.drawLogoTop = function(fColor, sColor) {
     rtop.closed = true;
     if(sColor) {
         rtop.strokeColor = sColor;
-        rtop.strokeWidth = 8;
+        rtop.strokeWidth = 4;
     } else {
         rtop.strokeColor = null;
     }
@@ -342,7 +264,7 @@ reuna.drawLogoBottom = function(fColor, sColor) {
     rbottom.closed = true;
     if(sColor) {
         rbottom.strokeColor = sColor;
-        rbottom.strokeWidth = 8;
+        rbottom.strokeWidth = 4;
     } else {
         rbottom.strokeColor = null;
     }
