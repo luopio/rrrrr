@@ -10,6 +10,8 @@ $(function() {
   total_sections = 0;
   carousels = [];
   
+  $('.carouseltext').animate({width:'hide'}, 0); // Hide in the beginning
+  
   resizeHandler = function() {
     window_width = $(window).width();
     window_height = $(window).height();
@@ -17,8 +19,13 @@ $(function() {
     $('html,body').animate({scrollTop:window_height*current_section},0);
     scaleCarouselImages();
     scaleCarouselVideos();
-    placeCarouselText();
+    //placeCarouselText();
   }
+  
+  $('#info').click(function() {
+		$('.carouseltext').delay(50).animate({width:'toggle'}, 300);
+		//$('#info').css("background", 'black').css("color",'white');
+	});
   
   $(window).load(function() { scaleCarouselImages(); });
   
@@ -47,7 +54,7 @@ $(function() {
       case 37:
         break;
       case 39:
-        break;    
+        break;
       case 38:
         prevView();
         break;
@@ -109,7 +116,7 @@ $(function() {
   }
   placeCarouselText = function() {
     $('.carousel').find('.carouseltext').each(function(){
-      $(this).css('left', window_width-$(this).outerWidth());
+      $(this).css('width', window_width);
       $(this).css('visibility','visible');
     });
   }
@@ -202,7 +209,7 @@ reuna.drawReunaCanvas = function() {
       
         view.onResize = function(event) {
             g1.position.x = view.center.x;
-            g1.position.y = view.center.y;        
+            g1.position.y = view.center.y;
             view.draw();
         }
         

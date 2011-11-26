@@ -64,9 +64,10 @@ td { vertical-align: top; }
 
 /* ==|== primary styles ===================================================== */
 
-#container {}
+#container { background:#eee;}
 ul#nav {position:fixed;top:25px;left:25px;z-index:200000; letter-spacing:1.5px; font-size:11px;}
-ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128);}
+ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128); visibility:hidden;}
+ul#nav li.logo {visibility:visible;}
 ul#nav li:first-child {margin-bottom:10px;}
 ul#nav li:first-letter {color:rgba(255, 255, 255, 164);}
 #logo { padding-bottom:15px; border-bottom:1px solid #000; border-color:rgba(0, 0, 0, 0.1);}
@@ -84,39 +85,25 @@ ul#nav li:hover {color:#60c;}
 #contact p {font-size:30px;position:relative;top:30%;}
 
 .carousel { } 
-.carousel img {  
-    top:  0;
-    left: 0;
-    position:absolute;
-}
+.carousel img {top:0; left:0; position:absolute;}
 .carousel .carouseltext {
   padding:16px 10px 20px 20px;
   float:left;
   position:absolute;
-  top: 100px;
+  top:100px;
   left:400px;
   width:300px;
   font-size:18px;
 	/* Fallback for web browsers that doesn't support RGBa */
-	background: rgb(255, 255, 255);
+	background:rgb(255, 255, 255);
 	/* RGBa with 0.6 opacity */
-	background: rgba(255, 255, 255, 0.6);
+	background:rgba(255, 255, 255, 0.6);
 	/* For IE 5.5 - 7*/
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF);
 	/* For IE 8*/
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
 }
-
-h1#reunaslogan {
-    z-index: 2000;
-    margin: auto;
-    position: absolute;
-    top: 70%;
-    text-align: center;
-    width: 100%;
-    color: #fff;
-    font-size: 2.5em;
-}
+h1#reunaslogan {z-index:2000; margin:auto; position:absolute; top:70%; text-align:center; width:100%; color:#fff; font-size:2.5em;}
 
 
 /* ==|== non-semantic helper classes ======================================== */
@@ -134,7 +121,6 @@ h1#reunaslogan {
 /* ==|== media queries ====================================================== */
 
 @media only screen and (min-width: 480px) {
-
 
 }
 
