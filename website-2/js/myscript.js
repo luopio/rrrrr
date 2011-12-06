@@ -99,7 +99,7 @@ $(document).ready(function() {
   $('#content').ascensor({
 	  AscensorName:'page',
 	  WindowsFocus:true,
-	  WindowsOn:1,
+	  WindowsOn:2,
 	
 	  NavigationDirection:'xy',
 	  Direction:'y',
