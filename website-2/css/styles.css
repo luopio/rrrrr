@@ -1,0 +1,96 @@
+/* HTML5 ✰ Boilerplate
+ * ==|== normalize ==========================================================
+ */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display:block; }
+audio, canvas, video { display:inline-block; *display:inline; *zoom:1; }
+audio:not([controls]) { display:none; }
+[hidden] { display:none; }
+
+html { font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+body { margin:0; background:#fff; font-size:12px; line-height:1.231; overflow:hidden; overflow-x:hidden; overflow-y:hidden; }
+body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', sans-serif; color:#222; }
+
+::-moz-selection { background:#fe57a1; color:#fff; text-shadow:none; }
+::selection { background:#fe57a1; color:#fff; text-shadow:none; }
+
+h1 {font-size:16px;margin:0 0 20px 0;}
+
+a { color:#0089f9; text-decoration:none; }
+a:visited { color:#0089f9; }
+a:hover { color:#06e; }
+a:focus { outline:thin dotted; }
+a:hover, a:active { outline:0; }
+
+abbr[title] { border-bottom:1px dotted; }
+b, strong { font-weight:bold; }
+blockquote { margin:1em 40px; }
+dfn { font-style: italic; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+ins { background: #ff9; color: #000; text-decoration: none; }
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+pre, code, kbd, samp { font-family:monospace, monospace; _font-family: 'courier new', monospace; font-size: 1em; }
+pre { white-space: pre; white-space:pre-wrap; word-wrap:break-word; }
+q { quotes:none; }
+q:before, q:after { content:""; content:none; }
+small { font-size:85%; }
+sub, sup { font-size:75%; line-height:0; position:relative; vertical-align:baseline; }
+sup { top:-0.5em; }
+sub { bottom:-0.25em; }
+ul, ol { margin:1em 0; padding:0 0 0 40px; }
+dd { margin:0 0 0 40px; }
+nav ul, nav ol { list-style:none; list-style-image:none; margin:0; padding:0; }
+img { border: 0; -ms-interpolation-mode:bicubic; vertical-align:middle; }
+svg:not(:root) { overflow:hidden; }
+figure { margin:0; }
+
+form { margin:0; }
+fieldset { border:0; margin:0; padding:0; }
+label { cursor:pointer; }
+legend { border: 0; *margin-left:-7px; padding:0; }
+button, input, select, textarea { font-size:100%; margin:0; vertical-align:baseline; *vertical-align:middle; }
+button, input { line-height:normal; *overflow:visible; }
+table button, table input { *overflow: auto; }
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor:pointer; -webkit-appearance:button; }
+input[type="checkbox"], input[type="radio"] { box-sizing:border-box; }
+input[type="search"] { -webkit-appearance:textfield; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; }
+input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+button::-moz-focus-inner, input::-moz-focus-inner { border:0; padding:0; }
+textarea { overflow:auto; vertical-align:top; resize:vertical; }
+input:valid, textarea:valid { }
+input:invalid, textarea:invalid { background-color:#f0dddd; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+/* MY STYLES */
+
+h1#logo {position:fixed; z-index:500000; top:25px; left:25px;}
+h1#logo:hover {cursor:pointer; }
+ul#nav {position:fixed; z-index:490000; top:59px; left:0; letter-spacing:1.5px; font-size:11px;padding:30px 10px 10px 25px;}
+ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128); }
+ul#nav li:first-letter {color:rgba(255, 255, 255, 164);}
+ul#nav li:hover {color:#60c;}
+
+#info {position:fixed; z-index:400000; bottom:25px; left:25px; z-index:200000; background:#fff; color:#333; padding:8px 10px 10px 10px;}
+#info:hover {color:#06e; cursor:pointer;}
+
+#pageNext{position:fixed; z-index:48000; bottom:25px; left:25px; }
+#pagePrev{position:fixed; z-index:48000; bottom:75px; left:25px; width:51px; height:51px;}
+#prevNext div img:hover{cursor:pointer;}
+#stuffpage{position:fixed; z-index:45000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); color:#fff; padding:20px 20px 20px 200px;}
+.contact {padding:20px 20px 20px 200px;}
+
+#content {}
+.contenu { }
+.contenu img { width:auto;}
+
+.intro {background:#e6e6e6;}
+.contentflow {}
+.timeflow {}
+.colortv {}
+#page9 {background:#222; color:#fff;}
+
+.intro img {position:absolute;top:50%;left:50%;margin:-250px 0 0 -300px;}
+
+
