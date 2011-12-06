@@ -90,7 +90,7 @@ ul#nav li:hover {color:#60c;}
 .contenu img { width:auto;}
 
 .intro {background:#e6e6e6;}
-.intro h1 {text-align:center;color:#60f;font:30px/2.3 normal 'Megrim';padding-top:150px;}
+.intro h1 {text-align:center;color:#0089f9;font:30px/2.3 normal 'Quicksand', 'Megrim';text-transform:uppercase;padding-top:150px;}
 .contentflow {}
 .timeflow {}
 .colortv {}
