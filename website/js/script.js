@@ -1,3 +1,13 @@
+// TODO:
+// Make carousel more OOP (one class)
+// Add menu items
+// Add landing page
+// Add contact page
+// Fix carousel central positioning to take into account stationary left bar.
+// Make visual arrow buttons active
+// Find new formulas for easing
+
+
 // introducing a reuna namespace to contain our util functions
 var reuna = {};
 
@@ -79,9 +89,10 @@ $(document).ready(function() {
     }
     gotoCarousel = function(i) {
       current_carousel[current_section] = i;
-      $('.carousel').animate({
+      $('.carousel').stop(true,true).animate({
           left: window_width*-i,
-          easing: 'easeOutExpo'}, 400);
+          easing: 'easeOutExpo'}, 300, function() {
+          });
     }
 
     prevSection = function() {
@@ -174,42 +185,27 @@ $(document).ready(function() {
       element.attachEvent(eventName, callback, false);
     }
   }
+  /*
+  Carousel = function() {
+    this.current = 0;
+    this.total = 0;
+    this.previous = function() {
+      
+    }
+    this.next = function() {
+      
+    }
+    this.goto = function() {
+      
+    }
+  }
+  */
 
 	init();
 	//$('#nav').animate({width:'hide'}, 0);
 	$('#stuffpage').fadeOut(0);
-  $('#topleftlogo').hover(function(){ $('#nav').stop(true,true).animate({height:'show'}, 200); },function(){  $('#nav').stop(true,true).animate({height:'hide'}, 200); });
+  //$('#topleftlogo').hover(function(){ $('#nav').stop(true,true).animate({height:'show'}, 200); },function(){  $('#nav').stop(true,true).animate({height:'hide'}, 200); });
   
   $("#stuff").click(function(){ $('#stuffpage').delay(100).fadeIn(700); });
   $("#stuffpage").click(function(){ $('#stuffpage').delay(100).fadeOut(700); });
 });
-/*
-$(document).ready(function() {
-  
-  $(document).keydown(function(e){
-    switch(e.keyCode){
-      case 37: //leftkey
-        $("#pagePrev").trigger("click");
-      break;
-      case 39: //rightkey
-        $("#pageNext").trigger("click");
-      break;
-      case 38: //up
-        $("#page_Up").trigger("click");
-      break;
-      case 40: //down
-        $("#page_Down").trigger("click");
-      break;
-    }
-  });
-  
-  // hide in the beginnning
-	$('#nav').animate({width:'hide'}, 0);
-	$('#stuffpage').fadeOut(0);
-  $('#topleftlogo').hover(function(){ $('#nav').stop(true,true).animate({height:'show'}, 200); },function(){  $('#nav').stop(true,true).animate({height:'hide'}, 200); });
-  
-  $("#stuff").click(function(){ $('#stuffpage').delay(100).fadeIn(700); });
-  $("#stuffpage").click(function(){ $('#stuffpage').delay(100).fadeOut(700); });
-  
-});
-  */

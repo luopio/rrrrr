@@ -9,16 +9,16 @@ audio:not([controls]) { display:none; }
 
 html { font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { margin:0; background:#fff; font-size:12px; line-height:1.231; overflow:hidden; overflow-x:hidden; overflow-y:hidden; }
-body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', sans-serif; color:#222; }
+body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', sans-serif; color:#000; }
 
 ::-moz-selection { background:#000; color:#fff; text-shadow:none; }
 ::selection { background:#000; color:#fff; text-shadow:none; }
 
 h1 {font-size:16px;margin:0 0 20px 0;}
 
-a { color:#0089f9; text-decoration:none; }
-a:visited { color:#0089f9; }
-a:hover { color:#06e; }
+a { color:#000; text-decoration:none; }
+a:visited { color:#000; }
+a:hover { color:#209b9f; }
 a:focus { outline:thin dotted; }
 a:hover, a:active { outline:0; }
 
@@ -66,10 +66,9 @@ td { vertical-align: top; }
 /* MY STYLES */
 h1#logo {position:fixed; z-index:500000; top:25px; left:25px;}
 h1#logo:hover {cursor:pointer; }
-ul#nav {position:fixed; z-index:500000; top:59px; left:0; letter-spacing:1.5px; font-size:11px;padding:30px 10px 10px 25px;}
-ul#nav li {cursor:pointer; line-height:1.8; color:rgba(255, 255, 255, 128); }
-ul#nav li:first-letter {color:rgba(255, 255, 255, 164);}
-ul#nav li:hover {color:#60c;}
+ul#nav {position:fixed; z-index:500000; top:46px; left:0; letter-spacing:1.5px; font-size:12px;padding:30px 10px 10px 25px;}
+ul#nav li {cursor:pointer; line-height:1.7; color:#000;}
+ul#nav li.aboutcontact {margin-top:14px;}
 
 .section {padding-top:0;height:100%;width:100%;overflow:hidden;}
 .carousel {position:absolute;}
