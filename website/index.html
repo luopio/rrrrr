@@ -15,17 +15,21 @@
 	<link rel="shortcut icon" href="images/favicon.ico" />
 </head>
 <body>
-	<h1 id="logo"><a class="pageLink0" rel="ConcentLink" href="#page0"><img src="images/reuna-logo-3.png" alt="Reuna" /></a></h1>
-	<nav><ul id="nav">
-		<li id="about"><a class="pageLink0" rel="ConcentLink" href="#page0">&para; ABOUT &amp; CONTACT</a></li>
-		<li id="stuff"><a href="#">&para; STUFF</a></li>
-	</ul></nav>
+  <div id="topleftlogo">
+  	<h1 id="logo"><a class="pageLink0" rel="ConcentLink" href="#page0"><img src="images/reuna-logo-3.png" alt="Reuna" /></a></h1>
+  	<nav><ul id="nav">
+  		<li id="about"><a class="pageLink0" rel="ConcentLink" href="#page0">&para; ABOUT &amp; CONTACT</a></li>
+  		<li id="stuff"><a href="#">&para; STUFF</a></li>
+  	</ul></nav>
+  </div>
 	
 	<div id="t-reuna"></div><div id="r-reuna"></div><div id="b-reuna"></div><div id="l-reuna"></div>
 	
-	<div id="prevNext">
-		<div id="pagePrev"><img src="images/ui-arrow-left.png" alt="Prev page" /></div>
-		<div id="pageNext"><img src="images/ui-arrow-right.png" alt="Next page" /></div>
+	<div id="prevNextUpDown">
+		<div id="pagePrev"><img src="images/ui-arrow-left.png" alt="Previous Image" /></div>
+		<div id="pageNext"><img src="images/ui-arrow-right.png" alt="Next Image" /></div>
+		<div id="pageUp"><img src="images/ui-arrow-up.png" alt="Previous Page" /></div>
+		<div id="pageDown"><img src="images/ui-arrow-down.png" alt="Next Page" /></div>
 	</div>
 
 
@@ -34,74 +38,27 @@
 		<p>This does not prevent their occurrence when there is too much content</p>
 	</div>
 	
-	<div id="general">
-		<div id="content">
-			<!-- CONTACT 1 - contact -->
-			<div>
-				<div class="contenu contact">
-					<h2>Contact us</h2>
-					<p>This does not prevent their occurrence when there is too much content</p>
-				</div>
-			</div>
+	<div id="container">
+      <div id="contentflow" class="section carousel">
+        <div>
+          <img src="images/contentflow-1.jpg">
+          <div class="carouseltext">Content flow is an interactive installation that allows you to combine an unlimited amount of screens and audio to present videos, images and generated content.</div>
+        </div>
+        <div>
+          <img src="images/contentflow-2.jpg">
+          <div class="carouseltext">The screens can also be synchorinized at any point to play the same content at the same time. This effect can also be triggered through user actions, such as someone entering the room.</div>
+        </div>
+        <div>
+          <img src="images/contentflow-3.jpg">
+          <div class="carouseltext">Presented content is not limited to video and photos - any content including websites or interactive games can be presented on the screens.</div>
+        </div>
+        <div>
+          <iframe src="http://player.vimeo.com/video/5808415?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;api=1&amp;player_id=vimeo_contentflow" width="400" height="225" id="vimeo_contentflow" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+          <div class="carouseltext">See the video</div>
+        </div>
+      </div>
+    </div>	
 			
-			<!-- INTRO 2 - intro page -->
-			<div>
-				<div class="contenu intro">
-					<img src="images/reuna-start.png" alt="Reuna offers unique interactive experiences, custom installations, generative art and interactivity that capture the attention of people and invite them to interact." />
-				</div>
-			</div>
-
-			<!-- PROJECT 3 -->
-			<div>
-				<div class="contenu contentflow scalefit">
-					<img src="images/contentflow-1.jpg" alt="Contentflow 1" />
-				</div>
-			</div>
-			<div>
-				<div class="contenu contentflow scalefit">
-					<img src="images/contentflow-2.jpg" alt="Contentflow 2" />
-				</div>
-			</div>
-			<div>
-				<div class="contenu contentflow scalefit">
-					<img src="images/contentflow-3.jpg" alt="Contentflow 3" />
-				</div>
-			</div>
-
-
-			<!-- PROJECT 4 -->
-			<div>
-				<div class="contenu timeflow scalefit">
-					<img src="images/timeflow-1.jpg" alt="Timeflow 1" />
-				</div>
-			</div>
-			<div>
-				<div class="contenu timeflow scalefit">
-					<img src="images/timeflow-2.jpg" alt="Timeflow 2" />
-				</div>
-			</div>
-			<div>
-				<div class="contenu timeflow">
-					<h2>Time flow</h2>
-					<p>The content displayed can be videos, images and text. Several instances can be combined to create a wider.</p>
-				</div>
-			</div>
-
-			<!-- PROJECT 5 -->
-			<div>
-				<div class="contenu colortv scalefit">
-					<img src="images/colortv-1.jpg" alt="ColorTV" />
-				</div>
-			</div>
-			<div>
-				<div class="contenu colortv scalefit">
-					<img src="images/colortv-2.jpg" alt="ColorTV" />
-				</div>
-			</div>
-			
-
-		</div>
-	</div>
 
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
   <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
