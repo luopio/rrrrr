@@ -8,7 +8,7 @@ audio:not([controls]) { display:none; }
 [hidden] { display:none; }
 
 html { font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
-body { margin:0; background:#fff; font-size:12px; line-height:1.231; overflow:hidden; overflow-x:hidden; overflow-y:hidden; }
+body { margin:0; background:#fff; font-size:12px; line-height:1.231;overflow:hidden;}
 body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', sans-serif; color:#000; }
 
 ::-moz-selection { background:#000; color:#fff; text-shadow:none; }
@@ -70,7 +70,7 @@ ul#nav {position:fixed; z-index:500000; top:46px; left:0; letter-spacing:1.5px; 
 ul#nav li {cursor:pointer; line-height:1.7; color:#000;}
 ul#nav li.aboutcontact {margin-top:14px;}
 
-#container {margin-left:240px;background:#cc0;}
+#container {margin-left:240px;background:#cc0;overflow:hidden;}
 .section {padding-top:0;height:100%;width:100%;overflow:hidden;}
 .carousel {position:absolute;}
 

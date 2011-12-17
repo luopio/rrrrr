@@ -17,20 +17,24 @@ $(document).ready(function() {
   }
   
   initReuna = function() {
-      $(window).keyup(keyUp);
-      $('.carousel').ReunaCarousel();  
-      setVimeoReadyEvents();
-      
-      $(window).resize(resizeHandler);
-      resizeHandler();
-      
-      $('#pagePrev').click(function(){$('.section.active').trigger('previous');});
-      $('#pageNext').click(function(){$('.section.active').trigger('next');});
-      $('#pageUp').click(prevSection);
-      $('#pageDown').click(nextSection);
+    $(window).keyup(keyUp);
+    $(window).keydown(keyDown);
+    $('.carousel').ReunaCarousel();
+    setVimeoReadyEvents();
+    
+    $(window).resize(resizeHandler);
+    resizeHandler();
+    
+    $('#pagePrev').click(function(){$('.section.active').trigger('previous');});
+    $('#pageNext').click(function(){$('.section.active').trigger('next');});
+    $('#pageUp').click(prevSection);
+    $('#pageDown').click(nextSection);
+    
+    log($('#container').css('height'));
   }
   
   keyUp = function(e) {
+    e.preventDefault();
       switch(e.keyCode) {
         case 38:
           prevSection();
@@ -39,28 +43,40 @@ $(document).ready(function() {
           nextSection();
           break;
       }
+    return false;
+  }
+
+  keyDown = function(e) {
+    switch(e.keyCode) {
+      case 37:
+      case 38:
+      case 39:
+      case 40:
+      e.preventDefault();
+      break;
     }
-    prevSection = function() {
-      var obj = $('.section.active').prev();
-      if (obj.length !== 0) {
-        $('.section.active').removeClass('active');
-        obj.addClass('active');
-        gotoSection(-1);
-      }
+  }
+  prevSection = function() {
+    var obj = $('.section.active').prev();
+    if (obj.length !== 0) {
+      $('.section.active').removeClass('active');
+      obj.addClass('active');
+      gotoSection(-1);
     }
-    nextSection = function() {
-      var obj = $('.section.active').next();
-      if (obj.length !== 0) {
-        $('.section.active').removeClass('active');
-        obj.addClass('active');
-        gotoSection(1);
-      }
+  }
+  nextSection = function() {
+    var obj = $('.section.active').next();
+    if (obj.length !== 0) {
+      $('.section.active').removeClass('active');
+      obj.addClass('active');
+      gotoSection(1);
     }
-    gotoSection = function(i) {
-      //$('html,body').scrollTo(100);
-      $.scrollTo({ top:window_height*i, left:0}, 500, {easing:'easeInOutExpo'});
-      //$('html,body').animate({scrollTop:$(window).height()*i,easing: 'easeInOutExpo'},1000);
-    }
+  }
+  gotoSection = function(i) {
+    //$('html,body').scrollTo(100);
+    $.scrollTo({ top:window_height*i, left:0}, 500, {easing:'easeInOutExpo'});
+    //$('html,body').animate({scrollTop:$(window).height()*i,easing: 'easeInOutExpo'},1000);
+  }
   setVimeoReadyEvents = function() {
     var vimeoPlayers = document.querySelectorAll('iframe'), player;
     for (var i = 0, length = vimeoPlayers.length; i < length; i++) {
@@ -95,6 +111,7 @@ $(document).ready(function() {
       var $this = $(this);
       var left_offset = 240;
       var this_count = count;
+      var animation_speed = 500;
       $(window).load(function() { scaleImages(); });
   
       var init = function() {
@@ -174,17 +191,19 @@ $(document).ready(function() {
         goTo(current-1);
       }
       var next = function() {
-        if (current>=total-1) {return;}
+        if (current>=total-1) { goTo(0,true); return;}
         goTo(current+1);
       }
-      var goTo = function(i) {
+      var goTo = function(i,speed) {
         current = i;
+        spd = speed ? animation_speed*2 : animation_speed;
         $this.stop(true,true).animate({
           left: ((window_width-left_offset)*-i)+left_offset},
-          {duration:500, easing: 'easeInOutExpo'}, function() {
+          {duration:spd, easing: 'easeInOutExpo'}, function() {
           });
       }
       var keyUp = function(e) {
+        e.preventDefault();
         if (!$this.hasClass('active')) { return; }
           switch(e.keyCode) {
             case 37:
@@ -194,6 +213,7 @@ $(document).ready(function() {
               next();
               break;
           }
+          return false;
         }
       this.previous = previous;
       this.next = next;
