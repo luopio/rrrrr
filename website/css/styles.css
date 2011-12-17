@@ -70,6 +70,7 @@ ul#nav {position:fixed; z-index:500000; top:46px; left:0; letter-spacing:1.5px; 
 ul#nav li {cursor:pointer; line-height:1.7; color:#000;}
 ul#nav li.aboutcontact {margin-top:14px;}
 
+#container {margin-left:240px;background:#cc0;}
 .section {padding-top:0;height:100%;width:100%;overflow:hidden;}
 .carousel {position:absolute;}
 

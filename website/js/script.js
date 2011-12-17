@@ -83,6 +83,8 @@ $(document).ready(function() {
       var window_width = 0;
       var window_height = 0;
       var $this = $(this);
+      var left_offset = 240;
+      var this_count = count;
       $(window).load(function() { scaleImages(); });
   
       var init = function() {
@@ -112,7 +114,7 @@ $(document).ready(function() {
           rootElement = ("onorientationchange" in window) ? $(document) : $(window);
           var rootWidth = rootElement.width();
           var rootHeight = rootElement.height();
-          //rootWidth -= 200;
+          rootWidth -= left_offset;
           self.css({width: "auto", height: "auto"});
           imgWidth = this.width;
           imgHeight = this.height;
@@ -140,19 +142,19 @@ $(document).ready(function() {
       }
       var scaleVideos = function() {
         $this.find('iframe').each(function(){
-          $(this).width( window_width ).height( window_height );
+          $(this).width( window_width-left_offset ).height( window_height );
         });
       }
       var positionDivs = function() {
         var posx = 0;
         $this.children('div').each(function() {
           $(this).css({'position':'absolute','left':posx,'overflow':'hidden','width':window_width,'height':window_height});
-           posx += window_width;
+           posx += window_width-left_offset;
         });
         $this.css('width',posx);
       }
       var positionContainer = function() {
-        $this.css({'top':count*window_height});
+        $this.css({'top':this_count*window_height});
       }
       
       var previous = function() {
@@ -166,7 +168,7 @@ $(document).ready(function() {
       var goTo = function(i) {
         current = i;
         $this.stop(true,true).animate({
-          left: window_width*-i,
+          left: ((window_width-left_offset)*-i)+left_offset,
           easing: 'easeInOutExpo'}, 300, function() {
           });
       }
