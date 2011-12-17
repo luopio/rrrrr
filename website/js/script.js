@@ -20,6 +20,11 @@ $(document).ready(function() {
       $(window).keyup(keyUp);
       $('.carousel').ReunaCarousel();  
       setVimeoReadyEvents();
+      
+      $('#pagePrev').click(function(){$('.section.active').trigger('previous');});
+      $('#pageNext').click(function(){$('.section.active').trigger('next');});
+      $('#pageUp').click(prevSection);
+      $('#pageDown').click(nextSection);
   }
   
   keyUp = function(e) {
@@ -92,6 +97,8 @@ $(document).ready(function() {
         resizeHandler();
     
         total = $this.children('div').size();
+        $this.bind('Previous Slide', previous);
+        $this.bind('Next Slide', next);
         $(window).keyup(keyUp);
         count++;
       }
@@ -183,6 +190,8 @@ $(document).ready(function() {
               break;
           }
         }
+      this.previous = previous;
+      this.next = next;
       init();
     });
   }
