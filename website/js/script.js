@@ -12,8 +12,8 @@ $(document).ready(function() {
   carousels = [];
   
   resizeHandler = function() {
-    window_width = $(window).width();
-    window_height = $(window).height();
+    window_width = $(window).innerWidth();
+    window_height = $(window).innerHeight();
   }
   
   initReuna = function() {
@@ -103,8 +103,8 @@ $(document).ready(function() {
         count++;
       }
       var resizeHandler = function() {
-        window_width = $(window).width();
-        window_height = $(window).height();
+        window_width = $(window).innerWidth();
+        window_height = $(window).innerHeight();
     
         //$('.carousel').css({'height':window_height,'width':window_width});
         //$('html,body').animate({scrollTop:window_height*current_section},0);
@@ -119,8 +119,8 @@ $(document).ready(function() {
         $this.find('img').each(function(){
           var self = $(this), imgWidth, imgHeight;
           rootElement = ("onorientationchange" in window) ? $(document) : $(window);
-          var rootWidth = rootElement.width();
-          var rootHeight = rootElement.height();
+          var rootWidth = rootElement.innerWidth();
+          var rootHeight = rootElement.innerHeight();
           rootWidth -= left_offset;
           self.css({width: "auto", height: "auto"});
           imgWidth = this.width;
