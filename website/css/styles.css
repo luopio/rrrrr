@@ -1,3 +1,13 @@
+/* LOAD FONTS */
+@font-face {font-family:'AWConquerorSansLight';
+src:url('type/awconquerorsans-light-webfont.eot');
+src:url('type/awconquerorsans-light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('type/awconquerorsans-light-webfont.woff') format('woff'),
+  url('type/awconquerorsans-light-webfont.ttf') format('truetype'),
+  url('type/awconquerorsans-light-webfont.svg#AWConquerorSansLight') format('svg');
+font-weight:normal; font-style:normal;
+}
+
 /* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
@@ -9,7 +19,7 @@ audio:not([controls]) { display:none; }
 
 html { font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { margin:0; background:#fff; font-size:12px; line-height:1.231;overflow:hidden;}
-body, button, input, select, textarea { font-family:'News Cycle', 'Comfortaa', sans-serif; color:#000; }
+body, button, input, select, textarea { font-family:'AWConquerorSansLight', 'Abel' sans-serif; color:#000; }
 
 ::-moz-selection { background:#000; color:#fff; text-shadow:none; }
 ::selection { background:#000; color:#fff; text-shadow:none; }
@@ -66,12 +76,14 @@ td { vertical-align: top; }
 /* MY STYLES */
 h1#logo {position:fixed; z-index:500000; top:25px; left:25px;}
 h1#logo:hover {cursor:pointer; }
-ul#nav {position:fixed; z-index:500000; top:46px; left:0; letter-spacing:1.5px; font-size:12px;padding:30px 10px 10px 25px;}
-ul#nav li {cursor:pointer; line-height:1.7; color:#000;}
+ul#nav {position:fixed; z-index:500000; top:70px; left:0; letter-spacing:1px; font-size:11px; padding:30px 10px 10px 25px;}
+ul#nav li {cursor:pointer; line-height:1.7; color:#aaa;}
 ul#nav li.aboutcontact {margin-top:14px;}
+ul#nav li a {color:#000;}
+ul#nav li a:hover {color:#000;}
 
-#container {margin-left:240px;background:#cc0;overflow:hidden;}
-.section {padding-top:0;height:100%;width:100%;overflow:hidden;}
+#container {margin-left:240px; background:#cc0; overflow:hidden;}
+.section {padding-top:0; height:100%; width:100%; overflow:hidden;}
 .carousel {position:absolute;}
 
 #t-reuna {position:fixed;z-index:490000;top:0;left:0;width:100%;height:8px;background:#fff;}
@@ -100,23 +112,9 @@ ul#nav li.aboutcontact {margin-top:14px;}
 .colortv {}
 #page9 {background:#222; color:#fff;}
 
-.intro img {position:absolute;top:50%;left:50%;margin:-250px 0 0 -300px;}
+.intro img {position:absolute;top:50%; left:50%; margin:-250px 0 0 -300px;}
 
-.clear {
-clear: both;
-margin: 0;
-margin-right: 1px;
-}
+.clear {clear:both; margin:0 0 0 1px;}
 
-div.carousel div p {
-    position: relative;
-    top: 10px;
-    left: 10px;
-    width: 30em;
-    padding: 1.2em;
-    color: white;
-    font-size: 1.2em;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-p.dark { color: white; background: rgba(0, 0, 0, 0.3) !important; }
+div.carousel div p {position:relative; top:3px; left:10px; width:30em; padding:20px; color:#fff; font-size:14px; text-transform:uppercase; background:rgba(255, 255, 255, 0.1);}
+div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
