@@ -213,7 +213,6 @@ reuna.canvas._mousePressedRouter = function(e) {
         if(btn == 1) btn = 0;
         else if(btn == 4) btn = 1; 
     }
-    echo("e.rel" + e.target.offsetTop)
     reuna.canvas.mousePressed(x, y, btn);
 }
 
