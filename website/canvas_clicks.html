@@ -30,35 +30,63 @@
         var lastDrawTime = 0;
         reuna.canvas.init('frontpage-canvas');
         reuna.canvas.noFill();
+        var w = 10, h = 10;
+        
         
         reuna.canvas.draw = function(delta) {
             reuna.canvas.fill();
-            reuna.canvas.setColor(255, 255, 255, 0.1);
-            reuna.canvas.rect(  0, 
-                                0, 
-                                reuna.canvas.getWidth(),
-                                reuna.canvas.getHeight());
+            var n = reuna.canvas.getElapsedTimeMillis();
+            if(n - lastDrawTime > 200) {
+                lastDrawTime = n;
+                
+                reuna.canvas.setColor(255, 255, 255, 0.8);
+                reuna.canvas.rect(  0, 
+                                    0, 
+                                    reuna.canvas.getWidth(),
+                                    reuna.canvas.getHeight());            
+                
+                reuna.canvas.setColor(0, 0, 0, 1);
+                for(var i = 0; i < clickPlaces.length; i++) {
+                    //reuna.canvas.setColor(255 * reuna.canvas.random(), 
+                    //        255 * reuna.canvas.random(),
+                    //        255 * reuna.canvas.random());
+                    clickPlaces[i][0] = clickPlaces[i][0] + clickPlaces[i][2] * w;
+                    clickPlaces[i][1] = clickPlaces[i][1] + clickPlaces[i][3] * h;
+                    
+                    reuna.canvas.rect(  clickPlaces[i][0],
+                                        clickPlaces[i][1],                        
+                                        w,
+                                        h);
+                    clickPlaces[i][4]++;
+                    if(clickPlaces[i][4] > 5 && reuna.canvas.random(-1, 1) > 0) {
+                        clickPlaces.splice(i, 1);
+                        echo("kill off")
+                    }
+                
+                }
+            }
+            
         };
         
         reuna.canvas.mousePressed = function(x, y, btn) {
             echo("click at "+x+","+y+" with "+btn)
-            clickPlaces.push([x, y, 0]);
+            clickPlaces.push([x, y, 
+                                Math.round(reuna.canvas.random(-1, 1)),
+                                Math.round(reuna.canvas.random(1, 2)),
+                                0]);
+            clickPlaces.push([x, y, 
+                                Math.round(reuna.canvas.random(1, 2)),
+                                Math.round(reuna.canvas.random(-1, 1)),
+                                0]);
+            clickPlaces.push([x, y, 
+                                Math.round(reuna.canvas.random(-1, 1)),
+                                Math.round(reuna.canvas.random(-2, -1)),
+                                0]);
+
             reuna.canvas.setColor(255 * reuna.canvas.random(), 
                     255 * reuna.canvas.random(),
                     255 * reuna.canvas.random());
 
-            if(btn == 0)
-                reuna.canvas.rect(x,
-                    y,                        
-                    20 + 20 * reuna.canvas.random(),
-                    20 + 20 * reuna.canvas.random());
-            else
-                reuna.canvas.triangle(x,
-                    y,                        
-                    x - 20 - 20 * reuna.canvas.random(),
-                    y + 20 + 20 * reuna.canvas.random(),
-                    x + 20 + 20 * reuna.canvas.random(),
-                    y + 20 + 20 * reuna.canvas.random());
         }
         
         reuna.canvas.run();
