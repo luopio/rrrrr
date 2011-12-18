@@ -108,3 +108,15 @@ margin: 0;
 margin-right: 1px;
 }
 
+div.carousel div p {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 30em;
+    padding: 1.2em;
+    color: white;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+p.dark { color: white; background: rgba(0, 0, 0, 0.3) !important; }
