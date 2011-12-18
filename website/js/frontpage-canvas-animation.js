@@ -12,6 +12,11 @@ function echo(msg) {
 
 reuna.canvas.init = function(canvas_id, drawCallback) {
     reuna.canvas._canvas = document.getElementById(canvas_id);
+    reuna.canvas._isIE = (function() {
+        var div = document.createElement('div');
+        div.innerHTML = '<!--[if IE]><i></i><![endif]-->';
+        return (div.getElementsByTagName('i').length === 1);         
+        }());
     if (reuna.canvas._canvas.getContext) {  
         var realWidth = reuna.canvas._canvas.clientWidth;
         reuna.canvas._canvas.setAttribute("width", realWidth);
@@ -27,6 +32,7 @@ reuna.canvas.init = function(canvas_id, drawCallback) {
         reuna.canvas._targetFPS = 30.0;
         reuna.canvas._initCallbackRoutine(window, Date);
         if(drawCallback) { reuna.canvas.draw = drawCallback; }
+        window.addEventListener('click', reuna.canvas._mousePressedRouter, false);
     } else {  
         echo('reuna.canvas.init: no support for canvas!');
         return false;
@@ -65,6 +71,9 @@ reuna.canvas.setColor = function(r, g, b, a) {
         // no more need to remember if it's float or hex
         if(a > 1) { a = a / 255.0; }
     }
+    r = parseInt(r);
+    g = parseInt(g);
+    b = parseInt(b);
     reuna.canvas._ctx.fillStyle = "rgba("+r+","+g+","+b+","+a+")";
     reuna.canvas._ctx.strokeStyle = "rgba("+r+","+g+","+b+","+a+")";
 }
@@ -75,15 +84,20 @@ reuna.canvas.setLineWidth = function(w) {
 
 reuna.canvas.rect = function(x1, y1, w, h) {
     reuna.canvas._ctx.moveTo(0, 0);  
-    reuna.canvas._ctx.fillRect(x1, y1, w, h);
+    if(reuna.canvas._fillModeOn) {
+        reuna.canvas._ctx.fillRect(x1, y1, w, h);
+    } else {
+        reuna.canvas._ctx.strokeRect(x1, y1, w, h);
+    }
 }
 
 reuna.canvas.triangle = function(x1, y1, x2, y2, x3, y3) {
     reuna.canvas._ctx.moveTo(0, 0);  
     reuna.canvas._ctx.beginPath();  
     reuna.canvas._ctx.moveTo(x1,y1);  
-    reuna.canvas._ctx.lineTo(x2,y2);  
-    reuna.canvas._ctx.lineTo(x3,y3);  
+    reuna.canvas._ctx.lineTo(x2,y2);
+    reuna.canvas._ctx.lineTo(x3,y3);
+    reuna.canvas._ctx.lineTo(x1,y1);  
     reuna.canvas._useFillOrStroke();
 }
 
@@ -185,5 +199,21 @@ reuna.canvas._initCallbackRoutine = function( window, Date ) {
       }
       loop();
     };
+}
+
+reuna.canvas._mousePressedRouter = function(e) {
+    if(e.target != reuna.canvas._canvas)
+        return false;
+        
+    var btn = e.button,
+        x = e.clientX - e.target.offsetLeft,
+        y = e.clientY - e.target.offsetTop;
+    // 0, 1, 2 = l, m, r, IE: 1, 4, 2 = l, m, r
+    if(reuna.canvas._isIE) {
+        if(btn == 1) btn = 0;
+        else if(btn == 4) btn = 1; 
+    }
+    echo("e.rel" + e.target.offsetTop)
+    reuna.canvas.mousePressed(x, y, btn);
 }
 
