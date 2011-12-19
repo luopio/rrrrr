@@ -74,9 +74,9 @@ table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 /* MY STYLES */
-h1#logo {position:fixed; z-index:500000; top:25px; left:25px;}
+h1#logo {position:fixed; z-index:500000; top:25px; left:20px;}
 h1#logo:hover {cursor:pointer; }
-ul#nav {position:fixed; z-index:500000; top:70px; left:0; letter-spacing:1px; font-size:11px; padding:30px 10px 10px 25px;}
+ul#nav {position:fixed; z-index:500000; top:60px; left:0; letter-spacing:1px; font-size:11px; padding:30px 10px 10px 20px;}
 ul#nav li {cursor:pointer; line-height:1.7; color:#aaa;}
 ul#nav li.aboutcontact {margin-top:14px;}
 ul#nav li a {color:#000;}
@@ -86,6 +86,9 @@ ul#nav li a:hover {color:#06e;}
 .section {padding-top:0; height:100%; width:100%; overflow:hidden;}
 .carousel {position:absolute;}
 
+.pinfo {position:fixed; z-index:490000; top:200px; left:-190px; width:190px; text-transform:uppercase; line-height:1.3; color:#000; border-top:4px solid #eee; padding-top:20px;}
+div.section div p {position:relative; z-index:500000; color:#000; top:200px; left:-125px; width:190px; text-transform:uppercase; line-height:1.3; border-top:4px solid #eee; padding-top:20px;}
+
 #t-reuna {position:fixed;z-index:490000;top:0;left:0;width:100%;height:8px;background:#fff;}
 #r-reuna {position:fixed;z-index:490000;top:0;right:0;width:8px;height:100%;background:#fff;}
 #b-reuna {position:fixed;z-index:490000;bottom:0;left:0;width:100%;height:8px;background:#fff;}
@@ -93,9 +96,6 @@ ul#nav li a:hover {color:#06e;}
 
 #info {position:fixed; z-index:500000; bottom:25px; left:25px; background:#fff; color:#333; padding:8px 10px 10px 10px;}
 #info:hover {color:#06e; cursor:pointer;}
-
-.pinfo {position:fixed; z-index:490000; top:220px; left:25px; width:190px; text-transform:uppercase; line-height:1.3; border-top:4px solid #eee; padding-top:20px;}
-.section h3 {position:fixed; z-index:490000; top:270px; left:25px; width:190px; font-size:12px; font-weight:normal; text-transform:uppercase; margin:0;padding:0;}
 
 #pageNext, #pagePrev, #pageUp, #pageDown {position:fixed; z-index:500000; bottom:30px; width:50px; height:50px; left:85px;}
 #pageNext{background:url('../images/ui-arrow-right.png') no-repeat top; left:135px; }
@@ -131,6 +131,7 @@ ul#nav li a:hover {color:#06e;}
 .intro img {position:absolute;top:50%; left:50%; margin:-250px 0 0 -300px;}
 
 .clear {clear:both; margin:0 0 0 1px;}
-
+/*
 div.carousel div p {position:relative; top:3px; left:10px; width:30em; padding:20px; color:#fff; font-size:14px; text-transform:uppercase; background:rgba(255, 255, 255, 0.1);}
 div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
+*/
