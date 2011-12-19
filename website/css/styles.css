@@ -19,7 +19,7 @@ audio:not([controls]) { display:none; }
 
 html { font-size:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body { margin:0; background:#fff; font-size:12px; line-height:1.231;overflow:hidden;}
-body, button, input, select, textarea { font-family:'AWConquerorSansLight', 'Abel' sans-serif; color:#000; }
+body, button, input, select, textarea { font-family:'AWConquerorSansLight', 'Lucida Grande' sans-serif; color:#000; text-transform:uppercase;}
 
 ::-moz-selection { background:#000; color:#fff; text-shadow:none; }
 ::selection { background:#000; color:#fff; text-shadow:none; }
@@ -82,12 +82,17 @@ ul#nav li.aboutcontact {margin-top:14px;}
 ul#nav li a {color:#000;}
 ul#nav li a:hover {color:#06e;}
 
+ul.nav-dots {float:right; list-style:none;}
+ul.nav-dots li {cursor:pointer;}
+ul.nav-dots li.rest {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat top;}
+ul.nav-dots li.current {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat bottom;}
+
 #container {margin-left:240px; background:#cc0; overflow:hidden;}
 .section {padding-top:0; height:100%; width:100%; overflow:hidden;}
 .carousel {position:absolute;}
 
-.pinfo {position:fixed; z-index:490000; top:200px; left:-190px; width:190px; text-transform:uppercase; line-height:1.3; color:#000; border-top:4px solid #eee; padding-top:20px;}
-div.carousel div p {position:relative; top:3px; left:10px; width:30em; padding:20px; color:#fff; font-size:13px; text-transform:uppercase; background:rgba(255, 255, 255, 0.1);}
+.pinfo {position:fixed; z-index:490000; top:200px; left:-190px; width:190px;line-height:1.3; color:#000; border-top:4px solid #eee; padding-top:20px;}
+.pinfo2 {position:relative; top:3px; left:10px; width:30em; padding:20px; color:#fff; font-size:13px; background:rgba(255, 255, 255, 0.1);}
 div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
 
 #t-reuna {position:fixed;z-index:490000;top:0;left:0;width:100%;height:8px;background:#fff;}
@@ -104,12 +109,10 @@ div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
 #pageUp{background:url('../images/ui-arrow-up.png') no-repeat top; bottom:75px;}
 #pageDown{background:url('../images/ui-arrow-down.png') no-repeat top;}
 
-#prevNextUpDown div:hover{cursor:pointer;}
-
-#pageNext:hover {background:url('../images/ui-arrow-right.png') no-repeat center;}
-#pagePrev:hover {background:url('../images/ui-arrow-left.png') no-repeat center;}
-#pageUp:hover {background:url('../images/ui-arrow-up.png') no-repeat center;}
-#pageDown:hover {background:url('../images/ui-arrow-down.png') no-repeat center;}
+#pageNext:hover {background:url('../images/ui-arrow-right.png') no-repeat center;cursor:pointer;}
+#pagePrev:hover {background:url('../images/ui-arrow-left.png') no-repeat center;cursor:pointer;}
+#pageUp:hover {background:url('../images/ui-arrow-up.png') no-repeat center;cursor:pointer;}
+#pageDown:hover {background:url('../images/ui-arrow-down.png') no-repeat center;cursor:pointer;}
 
 #pageNext:active {background:url('../images/ui-arrow-right.png') no-repeat bottom;}
 #pagePrev:active {background:url('../images/ui-arrow-left.png') no-repeat bottom;}
@@ -117,17 +120,11 @@ div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
 #pageDown:active {background:url('../images/ui-arrow-down.png') no-repeat bottom;}
 
 #stuffpage{position:fixed; z-index:45000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); color:#fff; padding:20px 20px 20px 200px;}
-.contact {padding:20px 20px 20px 200px;}
 
-#content {}
-.contenu { }
-.contenu img { width:auto;}
-
-.intro {background:#e6e6e6;background:#b3b3b3;}
-.intro h1 {text-align:center;position:relative;width:500px;left:50%;margin-left:-250px;top:25%;color:#231f20;font:30px/2.7 normal 'Terminal Dosis', 'Megrim';text-transform:uppercase;}
-.contentflow {}
-.timeflow {}
-.colortv {}
+#contentflow {}
+#timeflow {}
+#colortv {}
+#aboutcontact {background:#f4f4f4; text-align:center; font-size:15px; padding-top:20%;}
 #page9 {background:#222; color:#fff;}
 
 .intro img {position:absolute;top:50%; left:50%; margin:-250px 0 0 -300px;}
