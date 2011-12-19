@@ -6,6 +6,7 @@ $(document).ready(function() {
   window_height = 0;
   window_width = 0;
   current_section = 0;
+  sections = [];
   total_sections = 0;
   current_carousel = [];
   total_carousels = [];
@@ -29,9 +30,14 @@ $(document).ready(function() {
     $('#pageNext').click(function(){$('.section.active').trigger('next');});
     $('#pageUp').click(prevSection);
     $('#pageDown').click(nextSection);
-    
-    //log($('.section').size());
-    //log($('#container').css('height'));
+    $('#nav').find('li').each(function(k,v) {
+        $(this).click(function(e){
+            e.preventDefault();
+            gotoNamedSection($(this).find('a').attr("href"));
+        });
+    });
+    $.scrollTo({top:0,left:0},0);
+    $.scrollTo({top:0,left:0},1000);
   }
   
   keyUp = function(e) {
@@ -68,13 +74,25 @@ $(document).ready(function() {
   nextSection = function() {
     var obj = $('.section.active').next();
     if (obj.length !== 0) {
-      $('.section.active').removeClass('active');
-      obj.addClass('active');
-      gotoSection(1);
+        $('.section.active').removeClass('active');
+        obj.addClass('active');
+        gotoSection(1);
     }
   }
+  gotoNamedSection = function(target_id) {
+      var obj = $('#container').find(target_id);
+      $('.section.active').removeClass('active');
+      obj.addClass('active');
+      if (obj.length !== 0) {
+          $.scrollTo({top:obj.css('top'), left:0}, 400, {easing:'easeInOutExpo'});
+          window.setTimeout(function() {
+              $('.section.active').trigger('first');
+      }, 300);
+      }
+  }
   gotoSection = function(i) {
-    $.scrollTo({ top:'+='+String(window_height*i)+'px', left:0}, 500, {easing:'easeInOutExpo'});
+    var top_pos = '+='+String(window_height*i)+'px';
+    $.scrollTo({ top:top_pos, left:0}, 400, {easing:'easeInOutExpo'});
     window.setTimeout(function() {  
         $('.section.active').trigger('first');
     }, 300);
@@ -235,8 +253,8 @@ $(document).ready(function() {
     });
   }
 
-	initReuna();
-	$('#stuffpage').fadeOut(0);  
+    initReuna();
+    $('#stuffpage').fadeOut(0);  
   $("#stuff").click(function(){ $('#stuffpage').delay(100).fadeIn(700); });
   $("#stuffpage").click(function(){ $('#stuffpage').delay(100).fadeOut(700); });
 });
