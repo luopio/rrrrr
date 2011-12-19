@@ -1,11 +1,12 @@
 /* LOAD FONTS */
-@font-face {font-family:'AWConquerorSansLight';
-src:url('type/awconquerorsans-light-webfont.eot');
-src:url('type/awconquerorsans-light-webfont.eot?#iefix') format('embedded-opentype'),
-  url('type/awconquerorsans-light-webfont.woff') format('woff'),
-  url('type/awconquerorsans-light-webfont.ttf') format('truetype'),
-  url('type/awconquerorsans-light-webfont.svg#AWConquerorSansLight') format('svg');
-font-weight:normal; font-style:normal;
+@font-face {
+    font-family:'AWConquerorSansLight';
+    src:url('type/awconquerorsans-light-webfont.eot');
+    src:url('type/awconquerorsans-light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('type/awconquerorsans-light-webfont.woff') format('woff'),
+        url('type/awconquerorsans-light-webfont.ttf') format('truetype'),
+        url('type/awconquerorsans-light-webfont.svg#AWConquerorSansLight') format('svg');
+    font-weight:normal; font-style:normal;
 }
 
 /* HTML5 ✰ Boilerplate

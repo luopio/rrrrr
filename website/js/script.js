@@ -21,8 +21,10 @@ $(document).ready(function() {
   }
   
   initReuna = function() {
+    $("div.container").scroll(scrollHandler);
     $(window).keyup(keyUp);
     $(window).keydown(keyDown);
+    echo("scrollhnad" + scrollHandler)
     $('.carousel').ReunaCarousel();
     setVimeoReadyEvents();
     
@@ -45,6 +47,7 @@ $(document).ready(function() {
   }
   
   keyUp = function(e) {
+    echo("keyup")
     e.preventDefault();
       switch(e.keyCode) {
         case 38:
@@ -58,6 +61,7 @@ $(document).ready(function() {
   }
 
   keyDown = function(e) {
+    echo("keydown")
     switch(e.keyCode) {
       case 37:
       case 38:
@@ -134,6 +138,11 @@ $(document).ready(function() {
       element.attachEvent(eventName, callback, false);
     }
   }
+  
+  scrollHandler = function(e) {
+    echo("scroll event!")
+  }
+  
   jQuery.fn.ReunaCarousel = function() {
     var count = 0;
     return this.each(function() {
