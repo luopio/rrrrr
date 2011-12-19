@@ -144,6 +144,7 @@ $(document).ready(function() {
       var scaleImages = function() {
         // Custom stuff based on jQuery Backstretch 1.2.4 http://srobbin.com/jquery-plugins/jquery-backstretch/
         $this.find('img').each(function(){
+          if ($(this).hasClass('original')) { return true;}
           var self = $(this), imgWidth, imgHeight;
           rootElement = ("onorientationchange" in window) ? $(document) : $(window);
           var rootWidth = rootElement.innerWidth();
