@@ -18,7 +18,7 @@ reuna.canvas.init = function(canvas_id, drawCallback) {
         return (div.getElementsByTagName('i').length === 1);         
         }());
     
-    if (reuna.canvas._canvas.getContext) {  
+    if (reuna.canvas._canvas.getContext) {
         var realWidth = reuna.canvas._canvas.clientWidth;
         reuna.canvas._canvas.setAttribute("width", realWidth);
         reuna.canvas._width = realWidth;
@@ -34,10 +34,30 @@ reuna.canvas.init = function(canvas_id, drawCallback) {
         reuna.canvas._initCallbackRoutine(window, Date);
         if(drawCallback) { reuna.canvas.draw = drawCallback; }
         window.addEventListener('click', reuna.canvas._mousePressedRouter, false);
+        window.addEventListener('resize', reuna.canvas._resizeHandler, false);
     } else {  
         echo('reuna.canvas.init: no support for canvas!');
         return false;
     }
+}
+
+// TODO: not oF
+reuna.canvas.clearBackground = function() {
+    reuna.canvas._ctx.clearRect(0, 
+                                0, 
+                                reuna.canvas._width,
+                                reuna.canvas._height);
+}
+
+reuna.canvas._resizeHandler = function(e) {
+    var realWidth = reuna.canvas._canvas.clientWidth;
+    reuna.canvas._canvas.setAttribute("width", realWidth);
+    reuna.canvas._width = realWidth;
+    var realHeight = reuna.canvas._canvas.clientHeight;
+    reuna.canvas._height = realHeight;
+    reuna.canvas._canvas.setAttribute("height", realHeight);
+    echo("reuna.canvas.resizeHandler: set canvas to size "+realWidth+","+realHeight);
+    
 }
 
 reuna.canvas.draw = false;
@@ -205,7 +225,7 @@ reuna.canvas._initCallbackRoutine = function( window, Date ) {
 reuna.canvas._mousePressedRouter = function(e) {
     if(e.target != reuna.canvas._canvas)
         return false;
-        
+    
     // 0, 1, 2 = l, m, r, IE: 1, 4, 2 = l, m, r
     var btn = e.button;
     if(reuna.canvas._isIE) {
@@ -228,6 +248,8 @@ reuna.canvas._mousePressedRouter = function(e) {
     }
     x = e.clientX - curleft;
     y = e.clientY - curtop;
+    
+    // echo("click at "+x+","+y + " h " + reuna.canvas.getHeight());
     
     reuna.canvas.mousePressed(x, y, btn);
 }

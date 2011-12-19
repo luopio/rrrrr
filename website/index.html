@@ -105,7 +105,7 @@
         var lastDrawTime = 0;
         reuna.canvas.init('landing-canvas');
         reuna.canvas.noFill();
-        var w = 10, h = 10;        
+        var w = 10, h = 10;
         
         reuna.canvas.draw = function(delta) {
             reuna.canvas.fill();
@@ -125,34 +125,36 @@
                     //reuna.canvas.setColor(255 * reuna.canvas.random(), 
                     //        255 * reuna.canvas.random(),
                     //        255 * reuna.canvas.random());
-                    reuna.canvas.setColor(255, 255, 255, 0.9);
-                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w,
-                                        Math.round(clickPlaces[i][1]) * h,                        
+                    reuna.canvas.setColor(255, 255, 255, 1.0);
+                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
                                         w,
                                         h);
-                    
                     
                     clickPlaces[i][0] = clickPlaces[i][0] + clickPlaces[i][2];
                     clickPlaces[i][1] = clickPlaces[i][1] + clickPlaces[i][3];
                     
                     reuna.canvas.setColor(0, 0, 0, 1);
-                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w,
-                                        Math.round(clickPlaces[i][1]) * h,                        
+                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
                                         w,
                                         h);
                     clickPlaces[i][4]++;
                     if(clickPlaces[i][4] > 5 && reuna.canvas.random(-1, 1) > 0) {
+                        reuna.canvas.setColor(255, 255, 255, 0.95);
+                        reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
+                                        w,
+                                        h);
+                    
                         clickPlaces.splice(i, 1);
                     }
                 
                 }
             }
-            
         };
         
         reuna.canvas.mousePressed = function(x, y, btn) {
-            // echo("click at "+Math.round(x / w)+","+Math.round(y / h)+" with "+btn)
-            
             var amountOfParticles = reuna.canvas.random(1, 6);
             for(var i = 0; i < amountOfParticles; i++) {
                 clickPlaces.push([  Math.round(x / w), 
@@ -169,6 +171,7 @@
         }
         
         reuna.canvas.run();
+        setTimeout(reuna.canvas._resizeHandler, 800);
       
     });
   </script>
