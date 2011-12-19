@@ -82,10 +82,10 @@ ul#nav li.aboutcontact {margin-top:14px;}
 ul#nav li a {color:#000;}
 ul#nav li a:hover {color:#06e;}
 
-ul.nav-dots {float:right; list-style:none;}
-ul.nav-dots li {cursor:pointer;}
-ul.nav-dots li.rest {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat top;}
-ul.nav-dots li.current {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat bottom;}
+ul#nav-dots {list-style:none;z-index:480000;position:fixed;right:300px}
+ul#nav-dots li {cursor:pointer;float:left;}
+ul#nav-dots li.rest {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat top;}
+ul#nav-dots li.current {width:20px; height:20px; background:url('../images/slide-indicator.png') no-repeat bottom;}
 
 #container {margin-left:240px; background:#cc0; overflow:hidden;}
 .section {padding-top:0; height:100%; width:100%; overflow:hidden;}

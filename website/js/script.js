@@ -16,6 +16,8 @@ $(document).ready(function() {
   resizeHandler = function() {
     window_width = $(window).innerWidth();
     window_height = $(window).innerHeight();
+    var w = $('#nav-dots').width();
+    $('#nav-dots').css({'top':window_height-80,'right':20});
   }
   
   initReuna = function() {
@@ -210,7 +212,7 @@ $(document).ready(function() {
       }
       var positionDivs = function() {
         var posx = 0;
-        $this.children('div').each(function() {
+        $this.children('div').each(function(k,v) {
           $(this).css({'position':'absolute','left':posx,'overflow':'hidden','width':window_width,'height':window_height});
            posx += window_width-left_offset;
         });
@@ -218,6 +220,20 @@ $(document).ready(function() {
       }
       var positionContainer = function() {
         $this.css({'top':this_count*window_height,'left':left_offset});
+      }
+      var refreshNavDots = function() {
+          $('#nav-dots').html('');
+          if (total == 1) return;
+          
+          $this.children('div').each(function(k,v) {
+              var def = 'rest';
+              if (k == current) {
+                  def = 'current';
+              }
+              var $dot = $('<li class="'+def+'"></li>');
+              $('#nav-dots').append($dot);
+              $dot.click(function(){goTo(k);});
+          });
       }
       
       var first = function() {
@@ -241,6 +257,7 @@ $(document).ready(function() {
           spd, 'easeInOutExpo', function() {
             animating = false;
           });
+          refreshNavDots();
       }
       var keyUp = function(e) {
         e.preventDefault();
