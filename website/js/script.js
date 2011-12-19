@@ -30,7 +30,8 @@ $(document).ready(function() {
     $('#pageUp').click(prevSection);
     $('#pageDown').click(nextSection);
     
-    log($('#container').css('height'));
+    //log($('.section').size());
+    //log($('#container').css('height'));
   }
   
   keyUp = function(e) {
@@ -73,8 +74,10 @@ $(document).ready(function() {
     }
   }
   gotoSection = function(i) {
-    //$('html,body').scrollTo(100);
-    $.scrollTo({ top:window_height*i, left:0}, 500, {easing:'easeInOutExpo'});
+    $.scrollTo({ top:'+='+String(window_height*i)+'px', left:0}, 500, {easing:'easeInOutExpo'});
+    window.setTimeout(function() {  
+        $('.section.active').trigger('first');
+    }, 300);
     //$('html,body').animate({scrollTop:$(window).height()*i,easing: 'easeInOutExpo'},1000);
   }
   setVimeoReadyEvents = function() {
@@ -112,6 +115,7 @@ $(document).ready(function() {
       var left_offset = 240;
       var this_count = count;
       var animation_speed = 500;
+      var animating = false;
       $(window).load(function() { scaleImages(); });
   
       var init = function() {
@@ -119,6 +123,7 @@ $(document).ready(function() {
         resizeHandler();
     
         total = $this.children('div').size();
+        $this.bind('First Slide', first);
         $this.bind('Previous Slide', previous);
         $this.bind('Next Slide', next);
         $(window).keyup(keyUp);
@@ -186,6 +191,10 @@ $(document).ready(function() {
         $this.css({'top':this_count*window_height,'left':left_offset});
       }
       
+      var first = function() {
+        goTo(0);
+      }
+      
       var previous = function() {
         if (current<=0) {return;}
         goTo(current-1);
@@ -196,15 +205,18 @@ $(document).ready(function() {
       }
       var goTo = function(i,speed) {
         current = i;
+        animating = true;
         spd = speed ? animation_speed*2 : animation_speed;
-        $this.stop(true,true).animate({
-          left: ((window_width-left_offset)*-i)+left_offset},
-          {duration:spd, easing: 'easeInOutExpo'}, function() {
+        $this.stop(true,true).animate(
+          {left: ((window_width-left_offset)*-i)+left_offset},
+          spd, 'easeInOutExpo', function() {
+            animating = false;
           });
       }
       var keyUp = function(e) {
         e.preventDefault();
         if (!$this.hasClass('active')) { return; }
+        if (animating) { return; }
           switch(e.keyCode) {
             case 37:
               previous();
@@ -217,6 +229,7 @@ $(document).ready(function() {
         }
       this.previous = previous;
       this.next = next;
+      this.first = first;
       init();
     });
   }
