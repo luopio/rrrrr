@@ -21,7 +21,7 @@ $(document).ready(function() {
   }
   
   initReuna = function() {
-    $("div.container").scroll(scrollHandler);
+    $(window).bind('scroll', scrollHandler);
     $(window).keyup(keyUp);
     $(window).keydown(keyDown);
     echo("scrollhnad" + scrollHandler)
@@ -140,7 +140,8 @@ $(document).ready(function() {
   }
   
   scrollHandler = function(e) {
-    echo("scroll event!")
+    console.log(e)
+    echo("scroll event! " + e.detail)
   }
   
   jQuery.fn.ReunaCarousel = function() {
