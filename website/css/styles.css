@@ -121,6 +121,7 @@ div.carousel div p.dark {color:#fff; background:rgba(0, 0, 0, 0.3) !important;}
 
 #stuffpage{position:fixed; z-index:45000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); color:#fff; padding:20px 20px 20px 200px;}
 
+#intro {background:#f4f4f4;}
 #intro img {position:absolute;top:50%; left:50%; margin:-130px 0 0 -250px;}
 #intro div canvas {background:url('../images/landing-1.png') no-repeat 35% 45%; width:100%; height:100%;}
 #contentflow {}
