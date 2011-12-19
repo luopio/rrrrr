@@ -42,7 +42,7 @@ $(document).ready(function() {
         });
     });
     $.scrollTo({top:0,left:0},0);
-    $.scrollTo({top:0,left:0},1000);
+    //$.scrollTo({top:0,left:0},1000);
     
   }
   
