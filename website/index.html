@@ -39,13 +39,15 @@
 		<p>This does not prevent their occurrence when there is too much content</p>
 	</div>
 	<div id="container">
-	  <div id="landing" class="section carousel">
+	  <div id="landing" class="section carousel active">
 			<div>
-				<img src="images/landing-1.png" class="original" alt="Reuna bureau" />
+				<canvas style="background: url('images/landing-1.png') no-repeat center center; 
+				              width:1280px; height: 800px;" 
+				        class="original" alt="Reuna bureau" id="landing-canvas"></canvas>
 			</div>
 		</div>
 		
-		<div id="contentflow" class="section carousel active">
+		<div id="contentflow" class="section carousel">
 			<!--<p class="pinfo">This was hotter project than your mom cold even think of. All the way down to Alabama.</p>-->
 			<ul class="nav-dots"><li class="rest"></li><li class="rest"></li><li class="rest"></li><li class="current"></li></ul>
 			<div>
@@ -98,6 +100,82 @@
   
   <script defer src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
+  
+  <script defer src="js/frontpage-canvas-animation.js"></script>
+  <script type="text/javascript">
+    $(function() {
+        var clickPlaces = [];
+        var lastDrawTime = 0;
+        reuna.canvas.init('landing-canvas');
+        reuna.canvas.noFill();
+        var w = 10, h = 10;        
+        
+        reuna.canvas.draw = function(delta) {
+            reuna.canvas.fill();
+            var n = reuna.canvas.getElapsedTimeMillis();
+            if(n - lastDrawTime > 200) {
+                lastDrawTime = n;
+                
+                /*
+                reuna.canvas.setColor(255, 255, 255, 0.8);
+                reuna.canvas.rect(  0,
+                                    0, 
+                                    reuna.canvas.getWidth(),
+                                    reuna.canvas.getHeight());            
+                */
+                reuna.canvas.setColor(0, 0, 0, 1);
+                for(var i = 0; i < clickPlaces.length; i++) {
+                    //reuna.canvas.setColor(255 * reuna.canvas.random(), 
+                    //        255 * reuna.canvas.random(),
+                    //        255 * reuna.canvas.random());
+                    reuna.canvas.setColor(255, 255, 255, 0.9);
+                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w,
+                                        Math.round(clickPlaces[i][1]) * h,                        
+                                        w,
+                                        h);
+                    
+                    
+                    clickPlaces[i][0] = clickPlaces[i][0] + clickPlaces[i][2];
+                    clickPlaces[i][1] = clickPlaces[i][1] + clickPlaces[i][3];
+                    
+                    reuna.canvas.setColor(0, 0, 0, 1);
+                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w,
+                                        Math.round(clickPlaces[i][1]) * h,                        
+                                        w,
+                                        h);
+                    clickPlaces[i][4]++;
+                    if(clickPlaces[i][4] > 5 && reuna.canvas.random(-1, 1) > 0) {
+                        clickPlaces.splice(i, 1);
+                    }
+                
+                }
+            }
+            
+        };
+        
+        reuna.canvas.mousePressed = function(x, y, btn) {
+            // echo("click at "+Math.round(x / w)+","+Math.round(y / h)+" with "+btn)
+            
+            var amountOfParticles = reuna.canvas.random(1, 6);
+            for(var i = 0; i < amountOfParticles; i++) {
+                clickPlaces.push([  Math.round(x / w), 
+                                    Math.round(y / h), 
+                                    reuna.canvas.random(-1, 1),
+                                    reuna.canvas.random(-1, 1),
+                                    0]);
+            }
+            
+            reuna.canvas.setColor(255 * reuna.canvas.random(), 
+                    255 * reuna.canvas.random(),
+                    255 * reuna.canvas.random());
+
+        }
+        
+        reuna.canvas.run();
+      
+    });
+  </script>
+  
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>

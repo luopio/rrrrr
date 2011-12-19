@@ -17,6 +17,7 @@ reuna.canvas.init = function(canvas_id, drawCallback) {
         div.innerHTML = '<!--[if IE]><i></i><![endif]-->';
         return (div.getElementsByTagName('i').length === 1);         
         }());
+    
     if (reuna.canvas._canvas.getContext) {  
         var realWidth = reuna.canvas._canvas.clientWidth;
         reuna.canvas._canvas.setAttribute("width", realWidth);
@@ -205,14 +206,29 @@ reuna.canvas._mousePressedRouter = function(e) {
     if(e.target != reuna.canvas._canvas)
         return false;
         
-    var btn = e.button,
-        x = e.clientX - e.target.offsetLeft,
-        y = e.clientY - e.target.offsetTop;
     // 0, 1, 2 = l, m, r, IE: 1, 4, 2 = l, m, r
+    var btn = e.button;
     if(reuna.canvas._isIE) {
         if(btn == 1) btn = 0;
         else if(btn == 4) btn = 1; 
     }
+    /*
+    x = e.offsetX ? (e.offsetX) : e.pageX - reuna.canvas._canvas.offsetLeft;
+	y = e.offsetY ? (e.offsetY) : e.pageY - reuna.canvas._canvas.offsetTop;
+	*/
+    
+    /* calculate offset position */	
+	var curleft = curtop = 0;
+	var obj = reuna.canvas._canvas;
+	if (obj.offsetParent) {
+	    do {
+        	curleft += obj.offsetLeft;
+	        curtop += obj.offsetTop;
+	    } while (obj = obj.offsetParent);
+    }
+    x = e.clientX - curleft;
+    y = e.clientY - curtop;
+    
     reuna.canvas.mousePressed(x, y, btn);
 }
 
