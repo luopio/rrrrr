@@ -9,45 +9,65 @@ a {
     color: #400;
 }
 
+h2 {
+    margin: 2em 1em;
+}
+
+/* target links between pages */
 a.page-link {
     display: inline-block; 
     height: 3em;
     clear: both;
 }
 
-/* override the margins for the menu container */
+a.hilight {
+    color: #0cc;
+}
+
 div.menu-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 20px;
+    padding-right: 20px;
     position: fixed;
     width: 100%;
     background: white;
     z-index: 100;
+    border-bottom: 1px solid #999;
 }
 
+/* top menu */
+nav {
+    height: 4em;
+    margin: auto;
+    max-width: 1140px;
+}
+img#top-logo { margin-top: 0.5em; }
+nav a {
+    display: table-cell;
+    vertical-align: middle;
+    width: 15%; 
+    text-align: center;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+/* pages */
+div.landing-page {
+    margin: 10em 2em 5em 2em;
+}
+div.contact-page {
+    min-height: 20em;
+    background: #f2f2f2;
+    padding-bottom: 15em;
+}
 
 div.slogan {
     margin: 3em auto 8em auto;
     text-align: center;
 }
 
-div.landing-page {
-    margin: 10em 2em 5em 2em;
-}
-
-div.contact-page {
-    min-height: 20em;
-}
-
-nav {
-    height: 4em;
-    border-bottom: 1px solid #999;
-}
-
-nav a {
-    display: inline-block;
-    padding: 0;
-    margin: 1em 4em 1em 0em;
+div.twelvecol h1 {
+    text-transform: uppercase;
+    margin: 1em 0em;
 }
 
 /* ============================= */
