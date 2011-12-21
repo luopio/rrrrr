@@ -10,10 +10,10 @@
 
 body { background:#fff; color:#222; font:normal normal 15px/1.4 'AWConquerorSansLight', 'Lucida Grande', Arial, sans-serif;}
 
-a {text-decoration:none; color:#400;}
-a:hover {color:#06e;}
+a {text-decoration:none; color:#8ca;}
+a:hover {color:#9db;}
 a.page-link {display:inline-block; height:3em; clear:both;}
-a.hilight {color:#0cc;}
+a.hilight {color:#8ca;}
 
 h1, h2, h3, h4 {font:normal normal 15px/2 'AWConquerorSansLight', 'Lucida Grande'; text-transform:uppercase; letter-spacing:1.5px;}
 h1 {font-size:21px; line-height:3.5;}
@@ -31,9 +31,10 @@ nav ul li {display:inline; list-style-type:circle; color:#06c; padding-right:40p
 nav ul li a {text-decoration:none; color:#222;}
 
 /* pages */
-div.landing-page {margin:4em 0 4em 0;}
+div.landing-page {margin:4em 0;}
 div.contact-page {min-height:20em; background:#f2f2f2; padding-bottom:15em;}
-div.slogan {margin:60px auto; text-align:center; letter-spacing:2px;}
+div.contact-page h2 {text-align:center;margin:60px 0;}
+div.slogan {margin:60px 0; text-align:center; letter-spacing:2px;}
 div.slogan h1 {font-size:26px; line-height:2; padding-right:130px;padding-left:130px;}
 div.slogan h2 {font-size:22px; line-height:3; color:#ccc;}
 
