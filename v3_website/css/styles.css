@@ -1,0 +1,77 @@
+
+body {
+    background: #fff;
+    color: #011;
+}
+
+a {
+    text-decoration: none;
+    color: #400;
+}
+
+a.page-link {
+    display: inline-block; 
+    height: 3em;
+    clear: both;
+}
+
+/* override the margins for the menu container */
+div.menu-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 100;
+}
+
+
+div.slogan {
+    margin: 3em auto 8em auto;
+    text-align: center;
+}
+
+div.landing-page {
+    margin: 10em 2em 5em 2em;
+}
+
+div.contact-page {
+    min-height: 20em;
+}
+
+nav {
+    height: 4em;
+    border-bottom: 1px solid #999;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0;
+    margin: 1em 4em 1em 0em;
+}
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+		
+	}
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}

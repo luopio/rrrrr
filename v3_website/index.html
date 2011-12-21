@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>REUNA BUREAU</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Reuna is interactive agency that offers unique interactive experiences, custom installations, generative art and interactivity that capture the attention of people and invite them to interact." />
+	<meta name="author" content="Reuna Bureau" />
+	
+	<!-- 1140px Grid styles for IE -->
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/nivo-default-theme/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
+
+	<script type="text/javascript" src="js/libs/css3-mediaqueries.js"></script> <!-- med-q for older browsers -->
+	<link rel="icon" type="image/gif" href="images/favicon.ico" />
+	<link rel="shortcut icon" href="images/favicon.ico" />
+</head>
+
+<body>
+
+
+<!-- top menu that sticks around -->
+<div class="container menu-container">
+    <div class="row">
+        <div class="twelvecol">
+            <nav>
+	            <a href="#landing"><img src="images/reuna-logo-4.png" alt="Reuna" /></a>
+		        <a href="#contentflow"> CONTENT FLOW</a>
+		        <a href="#timeflow"> TIME FLOW</a>
+                <a href="#contact"> CONTACT</a>
+	        </nav>
+	    </div>
+	</div>
+</div>
+
+<a name="landing" id="landing" class="page-link"></a>
+
+<div class="container landing-page">
+    <div class="row">
+        <div class="twelvecol last slogan">
+            <p> [HORSIE + R = UNICORN MAGIC!] </p>
+            <h2> We are the masters of creative code </h2>
+        </div>
+	</div>
+    <div class="row">
+        <div class="fourcol">
+            <h2>Interactivity</h2>
+            <p>blaablaa</p>            
+        </div>
+        <div class="fourcol">
+            <h2>Information Visualization</h2>
+            <p>blaablaa</p>            
+        </div>
+        <div class="fourcol last">
+            <h2>Multi-display Magic</h2>
+            <p>blaablaa</p>                        
+        </div>
+	</div>
+</div>
+
+
+<a name="contentflow" id="contentflow" class="page-link"></a>
+
+<div class="container">
+    <div class="row">
+        <div class="threecol">
+            <p>Combine an unlimited number of screens and projections to give your content the visibility it deserves</p>
+		    <p>Serve any content from videos to images to dynamic text and interactive visuals</p>
+		    <p>Capture the attention of your audience and lift central parts of your content up by synchronously playing them on all the screens</p>
+        </div>
+        <div class="slider-wrapper theme-default ninecol last">
+            <div class="ribbon"></div>
+            <div id="content-flow-carousel" class="nivoSlider">
+	            <img src="images/contentflow-1.jpg" alt="" />
+	            <img src="images/contentflow-2.jpg" alt="" />
+	            <img src="images/contentflow-3.jpg" alt="" />
+                <!-- <iframe src="http://player.vimeo.com/video/33879563?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;api=1&amp;player_id=vimeo_contentflow" width="400" height="225" id="vimeo_contentflow" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe> -->
+            </div>
+	    </div>
+	</div>
+</div>
+
+<a name="timeflow" id="timeflow" class="page-link"></a>
+
+<div class="container">
+    <div class="row">
+        <div class="slider-wrapper theme-default ninecol last">
+            <div class="ribbon"></div>
+            <div id="time-flow-carousel" class="nivoSlider">
+	            <img src="images/timeflow-1.jpg" alt="" />
+	            <img src="images/timeflow-2.jpg" alt="" />
+	            <img src="images/timeflow-3.jpg" alt="" />
+                <!-- <iframe src="http://player.vimeo.com/video/33879089?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;api=1&amp;player_id=vimeo_contentflow" width="400" height="225" id="vimeo_contentflow" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe> -->
+            </div>
+	    </div>
+        <div class="threecol">
+            <p>A beautiful projection that displays temporal information interactively</p>
+		    <p>Participants control the display of information by moving within a space, each step taking them forward in time</p>
+		    <p>Include images and video to create depth and provide context</p>
+        </div>
+	</div>
+</div>
+
+
+<a name="contact" id="contact" class="page-link"></a>
+
+<div class="container contact-page">
+    <div class="row">
+        <div class="twelvecol slogan last">
+            <h2> We are </h2>
+        </div>
+	</div>
+	<div class="row">
+		<div class="threecol">
+		    <h4>R</h4>
+		</div>
+		<div class="threecol">
+			<h4>Lauri Kainulainen</h4>
+			<p> Blaablaablaa </p>
+		</div>
+		<div class="threecol">
+			<h4>Gökce Taskan</h4>
+			<p> Blaablaablaa </p>
+		</div>
+		<div class="threecol last">
+			<h4>Niko Knappe</h4>
+			<p> Blaablaablaa </p>
+		</div>
+	</div>
+</div>
+
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+    $('#content-flow-carousel,#time-flow-carousel').nivoSlider();
+    
+    // PAGE SCROLLING (uses jquery)
+    $('nav a').click(function() {
+        var elementClicked = $(this).attr("href");
+        var destination = $(elementClicked).offset().top;
+        $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 400 );
+        return false;
+    });
+});
+</script>
+
+
+</body>
+
+</html>
