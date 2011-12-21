@@ -27,9 +27,9 @@
 <div class="menu-container">
     <nav>
         <a href="#landing"><img id="top-logo" src="images/reuna-logo-4.png" alt="Reuna" /></a>
+        <a href="#surfaces">Multiple surfaces</a>
         <a href="#interactivity">Interactivity</a>
         <a href="#infovis">Information visualization</a>
-        <a href="#surfaces">Multiple surfaces</a>
         <a href="#contact">Contact</a>
     </nav>
 </div>
@@ -39,31 +39,39 @@
 <div class="container landing-page">
     <div class="row">
         <div class="twelvecol last slogan">
-            <p> [HORSIE + R = UNICORN MAGIC!] </p>
+            <canvas id="landing-canvas"></canvas>
             <h2>                        
                 We design and build unforgettable 
-                <a class="hilight" href="#timeflow">interactive experiences</a> 
-                that blend <a class="hilight" href="#contentflow">visually rich art</a> with 
-                <a class="hilight" href="#seismi">enlightening information</a>.
+                <a class="hilight" href="#interactivity">interactive experiences</a> 
+                that blend <a class="hilight" href="#surfaces">visually rich art</a> with 
+                <a class="hilight" href="#infovis">enlightening information</a>.
             </h2>
-            <h2>                        
+            <!-- <h2>                        
                 &mdash;
-            </h2>
+            </h2>-->
+            <p> [HORSIE + R = UNICORN MAGIC!] </p>
             <h2> We are the masters of creative code </h2>
         </div>
 	</div>
     <div class="row">
         <div class="fourcol">
-            <h2>Interactivity</h2>
-            <p>blaablaa</p>            
+            <h3>Interactivity</h3>
+            <p>
+                Discover the hidden patterns in your data through beautifully flowing interactive visualizations 
+            </p>            
         </div>
         <div class="fourcol">
-            <h2>Information Visualization</h2>
-            <p>blaablaa</p>            
+            <h3>Information Visualization</h3>
+            <p>
+                Engage people in new forms of interaction with experimental sensors and computer vision 
+            </p>            
         </div>
         <div class="fourcol last">
-            <h2>Multi-display Magic</h2>
-            <p>blaablaa</p>                        
+            <h3>Multi-display Magic</h3>
+            <p>
+                Break out of the box with the use of innovative surfaces, 
+                combination of displays and captivating animation that reacts to the audience. 
+            </p>                        
         </div>
 	</div>
 </div>
@@ -205,16 +213,118 @@ $(window).load(function() {
     $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider();
     
     // PAGE SCROLLING (uses jquery)
-    $('nav a').click(function() {
-        var elementClicked = $(this).attr("href");
+    $('nav a,a.hilight').click(function(e) {
+        e.preventDefault();
+        var href = $(this).attr("href");
+        var elementClicked = href;
         var destination = $(elementClicked).offset().top;
-        $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 400 );
+        $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 400,
+            function() { window.location.href = href; } );
         return false;
     });
 });
 </script>
 
+<script defer src="js/canvas.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var clickPlaces = [];
+        var lastDrawTime = 0;
+        reuna.canvas.init('landing-canvas');
+        reuna.canvas.noFill();
+        var w = 10, h = 10;
+        var prevMouseX = 0, prevMouseY = 0;
+        
+        reuna.canvas.draw = function(delta) {
+            reuna.canvas.fill();
+            var n = reuna.canvas.getElapsedTimeMillis();
+            if(n - lastDrawTime > 100) {
+                lastDrawTime = n;
+                
+                /*
+                reuna.canvas.setColor(255, 255, 255, 0.8);
+                reuna.canvas.rect(  0,
+                                    0, 
+                                    reuna.canvas.getWidth(),
+                                    reuna.canvas.getHeight());            
+                */
+                reuna.canvas.setColor(0, 0, 0, 1);
+                for(var i = 0; i < clickPlaces.length; i++) {
+                    //reuna.canvas.setColor(255 * reuna.canvas.random(), 
+                    //        255 * reuna.canvas.random(),
+                    //        255 * reuna.canvas.random());
+                    // reuna.canvas.setColor(255, 255, 255, 1.0);
+                    /* TODO: add into lib somehow... */
+                    reuna.canvas._ctx.clearRect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
+                                        w,
+                                        h);
+                    
+                    clickPlaces[i][0] = clickPlaces[i][0] + clickPlaces[i][2];
+                    clickPlaces[i][1] = clickPlaces[i][1] + clickPlaces[i][3];
+                    
+                    // 5.0 / (clickPlaces[i][4] + 1) <= replace 1.0 for fade out effect.. 
+                    reuna.canvas.setColor(clickPlaces[i][5], clickPlaces[i][6], clickPlaces[i][7], 1.0);
+                    reuna.canvas.rect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
+                                        w,
+                                        h);
+                    clickPlaces[i][4]++; // amount of turns alive
+                    if(clickPlaces[i][4] > 5 && reuna.canvas.random(-1, 1) > 0) {
+                        // reuna.canvas.setColor(255, 255, 255, 0.95);
+                        reuna.canvas._ctx.clearRect(  Math.round(clickPlaces[i][0]) * w + w/2,
+                                        Math.round(clickPlaces[i][1]) * h + h/2,                        
+                                        w,
+                                        h);
+                    
+                        clickPlaces.splice(i, 1);
+                    }
+                
+                }
+            }
+        };
+        
+        reuna.canvas.mouseMoved = function(x, y, btn) {
+            var delta = Math.sqrt(
+                                Math.pow(x - prevMouseX, 2) +
+                                Math.pow(y - prevMouseY, 2)
+                                )
+            prevMouseX = x, prevMouseY = y;
+            
+            if(delta > 23) {
+                createParticles(x, y, false);
+            }
 
+        }
+
+        reuna.canvas.mousePressed = function(x, y, btn) {
+            createParticles(x, y, true);
+        }
+        
+        function createParticles(x, y, randomColors) {
+            var amountOfParticles = reuna.canvas.random(1, 6);
+            for(var i = 0; i < amountOfParticles; i++) {
+                if(!randomColors) {
+                    var r = g = b = reuna.canvas.random(30, 180);
+                } else {
+                    var r = reuna.canvas.random(40, 255),
+                        g = reuna.canvas.random(40, 255),
+                        b = reuna.canvas.random(40, 255);
+                }
+                clickPlaces.push([  Math.round(x / w), 
+                                    Math.round(y / h), 
+                                    reuna.canvas.random(-1, 1),
+                                    reuna.canvas.random(-1, 1),
+                                    0,
+                                    r, g, b]);
+            }
+        }
+        
+        reuna.canvas.run();
+        setTimeout(reuna.canvas._resizeHandler, 800);
+      
+    });
+</script>
 </body>
 
 </html>

@@ -10,7 +10,27 @@ a {
 }
 
 h2 {
-    margin: 2em 1em;
+    margin: 3em 4em;
+    text-transform: uppercase;
+}
+h3 {
+    text-align: left;
+    margin: 1em 0 0.5em 0;
+    text-transform: uppercase;
+}
+
+div.landing-page p {
+    color: #444;
+}
+
+canvas#landing-canvas {
+    height: 400px;
+    width: 100%;
+    position: absolute;
+    top: 4em;
+    left: 0px;
+    z-index: 10;
+    background: none;
 }
 
 /* target links between pages */
@@ -52,7 +72,7 @@ nav a {
 
 /* pages */
 div.landing-page {
-    margin: 10em 2em 5em 2em;
+    margin: 2em 2em 5em 2em;
 }
 div.contact-page {
     min-height: 20em;
@@ -61,7 +81,7 @@ div.contact-page {
 }
 
 div.slogan {
-    margin: 3em auto 8em auto;
+    margin: 1em auto;
     text-align: center;
 }
 
