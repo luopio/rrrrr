@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/nivo-default-theme/default.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
     <script type="text/javascript" src="js/libs/css3-mediaqueries.js"></script> <!-- med-q for older browsers -->
     <link rel="icon" type="image/gif" href="images/favicon.ico" />
@@ -78,7 +79,7 @@
             <p>Combine an <b>unlimited</b> number of screens and projections to give your content the visibility it deserves.</p>
             <p>Serve <b>any content</b> from videos to images to dynamic text and interactive visuals.</p>
             <p>Capture the attention of your audience and lift central parts of your content up by <b>synchronously</b> playing them on all the screens.</p>
-            <p><a href="http://vimeo.com/33879563">Watch the video on Vimeo</a></p>
+            <p><a class="colorbox-video" href="http://player.vimeo.com/video/33879563?autoplay=1">Watch the video</a></p>
         </div>
         <div class="slider-wrapper theme-default ninecol last">
             <div class="ribbon"></div>
@@ -86,12 +87,12 @@
                 <img src="images/contentflow-1.jpg" alt="" />
                 <img src="images/contentflow-2.jpg" alt="" />
                 <img src="images/contentflow-3.jpg" alt="" />
-                <img src="images/content-flow-screenie.png" alt="Watch the video on vimeo" title="#contentflow-video-htmlcaption" />
-                <!-- <iframe src="http://player.vimeo.com/video/33879563?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;api=1&amp;player_id=vimeo_contentflow" width="400" height="225" id="vimeo_contentflow" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe> -->
+                <!-- <img src="images/content-flow-screenie.png" alt="Watch the video on vimeo" title="#contentflow-video-htmlcaption" /> -->
             </div>
-            <div id="contentflow-video-htmlcaption" class="nivo-html-caption">
-                <a href="http://http://vimeo.com/33879563">Watch the video</a>
-            </div>
+            <!-- <div id="contentflow-video-htmlcaption" class="nivo-html-caption">
+                <span data-href="http://player.vimeo.com/video/33879563?autoplay=1">Watch the video</b>
+                (<a href="http://http://vimeo.com/33879563">vimeo link</a>)
+            </div> -->
         </div>
     </div>
 </div>
@@ -110,12 +111,12 @@
                 <img src="images/timeflow-1.jpg" alt="" />
                 <img src="images/timeflow-2.jpg" alt="" />
                 <img src="images/timeflow-3.jpg" alt="" />
-                <img src="images/time-flow-screenie.png" alt="Watch the video on vimeo" title="#timeflow-video-htmlcaption" />
-                <!-- <iframe src="http://player.vimeo.com/video/33879089?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;api=1&amp;player_id=vimeo_contentflow" width="400" height="225" id="vimeo_contentflow" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe> -->
+                <!-- <img id="timeflow-screenie" src="images/time-flow-screenie.png" alt="Watch the video on vimeo" title="#timeflow-video-htmlcaption" /> -->
             </div>
-            <div id="timeflow-video-htmlcaption" class="nivo-html-caption">
-                <a href="http://http://vimeo.com/33879089">Watch the video</a>
-            </div>
+            <!-- <div id="timeflow-video-htmlcaption" class="nivo-html-caption">
+                <span data-href="http://player.vimeo.com/video/33879089?autoplay=1">Watch the video</b>
+                (<a href="http://http://vimeo.com/33879089">vimeo link</a>)
+            </div> -->
         </div>
         <div class="threecol last">
             <p>Create much more memorable and deeper experiences through natural ways of interaction.</p>
@@ -123,7 +124,7 @@
             <p>A beautiful projection displays temporal information interactively.</p>
             <p>Participants control the display of information by moving within a space, each step taking them forward in time.</p>
             <p>Include images and video to create depth and provide context.</p>
-            <p><a href="http://vimeo.com/33879089">Watch the video on Vimeo</a></p>
+            <p><a class="colorbox-video" href="http://player.vimeo.com/video/33879089?autoplay=1">Watch the video</a></p>
         </div>
     </div>
 </div>
@@ -142,7 +143,7 @@
             <p>Add interaction to dive deeper into the information.</p>
             <h4>Example Project: Seismi </h4>
             <p>Several different views provide continuously updating information about the earthquakes around the globe.</p>
-            <p><a href="http://www.seismi.org">See in online</a></p>
+            <p><a href="http://www.seismi.org">Experience it online</a></p>
         </div>
         <div class="slider-wrapper theme-default ninecol last">
             <div class="ribbon"></div>
@@ -194,12 +195,31 @@
 </div>
 
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-<!-- <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script> -->
 <script type="text/javascript" src="js/libs/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="js/libs/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
 $(window).load(function() {
-    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider();
+    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(
+        /*
+        // nivo slider is quite unflexible with event handlers. it also prevents attaching event handlers
+        // to the html elements inside its captions. travelling and finding attr value like below is possible, 
+        // but for some reason fires two times (which causes two videos to open on top of each other)
+        // i don't want hacky state-machine bs here and as colorbox has no .isActive() method, i decided
+        // to leave image links out
+        {'afterLoad': function(e) {
+                $('.nivo-caption').click(function(e) {
+                    // click arrives to generaged div.nivo-caption. have to travel to > p > span
+                    var href = $(this).find('span').attr('data-href');
+                    echo("href " + href)
+                    $.colorbox({href: href, transition: "fade", iframe: true, width: "90%", height: "90%"});
+                })
+            }
+        }
+        */
+    );
     
+    $('a.colorbox-video').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
+        
     // PAGE SCROLLING (uses jquery)
     $('nav a,a.hilight,a#landing-link').click(function(e) {
         e.preventDefault();

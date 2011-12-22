@@ -1,0 +1,24 @@
+/* === COLORBOX === */
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+
+#cboxOverlay{background:#fff;}
+#colorbox{}
+#cboxContent{margin:30px; overflow:visible;}
+#cboxError{padding:50px; border:none; color:#444;text-shadow:none;}
+#cboxLoadedContent{background:#444; padding:0; border:none;}
+#cboxLoadingGraphic{background:url('../img/loading.gif') no-repeat center center;}
+#cboxLoadingOverlay{background:#444;}
+#cboxTitle{position:absolute; top:-22px; left:0; color:#000;}
+#cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
+#cboxPrevious {text-indent:-9999px;background: url('../img/carousel_arrow_left_thin.png') no-repeat center;width:43px;height:100%;position:absolute;top:0;left:-70px;}
+#cboxNext {text-indent:-9999px;background: url('../img/carousel_arrow_right_thin.png') no-repeat center;width:43px;height:100%;position:absolute;top:0;right:-70px;}
+#cboxClose {text-indent:-9999px;background:url('../img/close_button.png') no-repeat center;width:16px;height:16px;position:absolute;top:-20px;right:-3px;}
