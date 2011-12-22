@@ -221,12 +221,39 @@ $(window).load(function() {
             }
         }
         */
-    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider({
-                                                                        pauseTime: 3000,
-                                                                        slices: 7, // For slice animations
-                                                                        boxCols: 4, // For box animations
-                                                                        boxRows: 2, // For box animations
-                                                                    });
+    
+    var params = {
+                    // effect: 'slideInRight,fade',
+                    pauseTime: 4000,
+                    slices: 6, // For slice animations
+                    boxCols: 4, // For box animations
+                    boxRows: 2, // For box animations
+                  };
+    
+    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(params);
+    
+    pauseNivo('#surfaces-carousel')
+    pauseNivo('#interactivity-carousel')
+    pauseNivo('#infovis-carousel')
+    
+    function pauseNivo(elem) {
+        with($(elem).data('nivoslider')) {
+            //echo($(elem).data('nivoslider'))
+            //vars.paused = true;
+            //clearInterval( timer );
+            //timer = '';
+            stop()
+        }
+    }
+    function resumeNivo(elem) {
+        with($(elem).data('nivoslider')) {
+            vars.paused = false;
+            //Restart the timer
+            if(timer == '' && !settings.manualAdvance){
+                timer = setInterval(function(){ nivoRun(slider, kids, settings, false); }, settings.pauseTime);
+            }
+        }
+    };
     
     $('a.nivo-video-link').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
     
