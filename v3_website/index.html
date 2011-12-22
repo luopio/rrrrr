@@ -205,7 +205,6 @@
 <script type="text/javascript" src="js/libs/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
 $(window).load(function() {
-    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(
         /*
         // nivo slider is quite unflexible with event handlers. it also prevents attaching event handlers
         // to the html elements inside its captions. travelling and finding attr value like below is possible, 
@@ -222,7 +221,12 @@ $(window).load(function() {
             }
         }
         */
-    );
+    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider({
+                                                                        pauseTime: 3000,
+                                                                        slices: 7, // For slice animations
+                                                                        boxCols: 4, // For box animations
+                                                                        boxRows: 2, // For box animations
+                                                                    });
     
     $('a.nivo-video-link').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
     
