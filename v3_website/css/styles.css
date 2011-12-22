@@ -38,6 +38,8 @@ div.slogan {margin:60px 0; text-align:center; letter-spacing:2px;}
 div.slogan h1 {font-size:26px; line-height:2; padding-right:130px;padding-left:130px;}
 div.slogan h2 {font-size:22px; line-height:3; color:#ccc;}
 
+div.nivo-caption { text-align: center; text-transform: uppercase; font:normal normal 2em/1.4 'AWConquerorSansLight', 'Lucida Grande', Arial, sans-serif; }
+
 /* ============================= */
 /* ! Layout for mobile version   */
 /* ============================= */
