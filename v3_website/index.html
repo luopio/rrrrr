@@ -87,7 +87,9 @@
                 <img src="images/contentflow-1.jpg" alt="" />
                 <img src="images/contentflow-2.jpg" alt="" />
                 <img src="images/contentflow-3.jpg" alt="" />
-                <!-- <img src="images/content-flow-screenie.png" alt="Watch the video on vimeo" title="#contentflow-video-htmlcaption" /> -->
+                <a class="nivo-video-link" href="http://player.vimeo.com/video/33879563?autoplay=1">
+                    <img src="images/content-flow-screenie.png" alt="Watch the video" />
+                </a>
             </div>
             <!-- <div id="contentflow-video-htmlcaption" class="nivo-html-caption">
                 <span data-href="http://player.vimeo.com/video/33879563?autoplay=1">Watch the video</b>
@@ -111,7 +113,9 @@
                 <img src="images/timeflow-1.jpg" alt="" />
                 <img src="images/timeflow-2.jpg" alt="" />
                 <img src="images/timeflow-3.jpg" alt="" />
-                <!-- <img id="timeflow-screenie" src="images/time-flow-screenie.png" alt="Watch the video on vimeo" title="#timeflow-video-htmlcaption" /> -->
+                <a class="nivo-video-link" href="http://player.vimeo.com/video/33879089?autoplay=1">
+                    <img src="images/time-flow-screenie.png" alt="Watch the video" />
+                </a>
             </div>
             <!-- <div id="timeflow-video-htmlcaption" class="nivo-html-caption">
                 <span data-href="http://player.vimeo.com/video/33879089?autoplay=1">Watch the video</b>
@@ -220,6 +224,8 @@ $(window).load(function() {
         */
     );
     
+    $('a.nivo-video-link').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
+    
     $('a.colorbox-video').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
         
     // PAGE SCROLLING (uses jquery)
@@ -251,20 +257,13 @@ $(window).load(function() {
             if(n - lastDrawTime > 100) {
                 lastDrawTime = n;
                 
-                /*
-                reuna.canvas.setColor(255, 255, 255, 0.8);
-                reuna.canvas.rect(  0,
-                                    0, 
-                                    reuna.canvas.getWidth(),
-                                    reuna.canvas.getHeight());
-                */
                 reuna.canvas.setColor(0, 0, 0, 1);
                 for(var i = 0; i < clickPlaces.length; i++) {
                     //reuna.canvas.setColor(255 * reuna.canvas.random(),
                     //        255 * reuna.canvas.random(),
                     //        255 * reuna.canvas.random());
                     // reuna.canvas.setColor(255, 255, 255, 1.0);
-                    /* TODO: add into lib somehow... */
+                    // TODO: add into lib somehow...
                     reuna.canvas._ctx.clearRect(  Math.round(clickPlaces[i][0]) * w + w/2,
                                         Math.round(clickPlaces[i][1]) * h + h/2,
                                         w,
