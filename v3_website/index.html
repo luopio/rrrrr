@@ -230,35 +230,37 @@
 <script type="text/javascript" src="js/libs/jquery.nivo.slider.pack.js"></script>
 <script type="text/javascript" src="js/libs/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
-<<<<<<< HEAD
-$(window).load(function() {
-    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(
-        /*
-        // nivo slider is quite unflexible with event handlers. it also prevents attaching event handlers
-        // to the html elements inside its captions. travelling and finding attr value like below is possible, 
-        // but for some reason fires two times (which causes two videos to open on top of each other)
-        // i don't want hacky state-machine bs here and as colorbox has no .isActive() method, i decided
-        // to leave image links out
-        {'afterLoad': function(e) {
-                $('.nivo-caption').click(function(e) {
-                    // click arrives to generaged div.nivo-caption. have to travel to > p > span
-                    var href = $(this).find('span').attr('data-href');
-                    echo("href " + href)
-                    $.colorbox({href: href, transition: "fade", iframe: true, width: "90%", height: "90%"});
-                })
-            }
-        }
-        */
-    );
+
+function activateCarouselsOnScroll() {
+    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').each( function(i, el) {
+        if(isScrolledIntoView(el)) { resumeNivo(el); }
+        else { pauseNivo(el); }
+    });
+}
+
+function isScrolledIntoView(elem) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+}
+
+function pauseNivo(elem) {
+    var $elem = $(elem).data('nivoslider').stop();
+}
+function resumeNivo(elem) {
+    $(elem).data('nivoslider').start();
+};
     
-=======
-$(window).load(function() {        
+$(window).load(function() {
     var params = {
                     // effect: 'slideInRight,fade',
                     pauseTime: 4000,
                     slices: 6, // For slice animations
                     boxCols: 4, // For box animations
                     boxRows: 2, // For box animations
+                    // afterLoad: activateCarouselsOnScroll,
                   };
     
     $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(params);
@@ -267,28 +269,12 @@ $(window).load(function() {
     // pauseNivo('#interactivity-carousel')
     // pauseNivo('#infovis-carousel')
     
-    function pauseNivo(elem) {
-        with($(elem).data('nivoslider')) {
-            //echo($(elem).data('nivoslider'))
-            //vars.paused = true;
-            //clearInterval( timer );
-            //timer = '';
-            stop()
-        }
-    }
-    function resumeNivo(elem) {
-        with($(elem).data('nivoslider')) {
-            vars.paused = false;
-            //Restart the timer
-            if(timer == '' && !settings.manualAdvance){
-                timer = setInterval(function(){ nivoRun(slider, kids, settings, false); }, settings.pauseTime);
-            }
-        }
-    };
+    activateCarouselsOnScroll();
     
+    $(window).scroll(activateCarouselsOnScroll);
+        
     $('a.nivo-video-link').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
 
->>>>>>> 1ea0d4ac230944826329c0de69386cddd54fc26e
     $('a.colorbox-video').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
         
     // PAGE SCROLLING (uses jquery)
