@@ -19,25 +19,6 @@
 </head>
 
 <body>
-<!-- top menu that sticks around -->
-<div class="container navigation">
-    <div class="row">
-        <div class="threecol logo">
-            <a href="#landing" id="landing-link"><img id="logo" src="images/reuna-logo-4.png" alt="Reuna" /></a>
-        </div>
-        <div class="ninecol last">
-            <nav>
-                <ul>
-                    <li><a href="#surfaces">Multiple surfaces</a></li>
-                    <li><a href="#interactivity">Interactivity</a></li>
-                    <li><a href="#infovis">Information visualization</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
 <a name="landing" id="landing" class="page-link"></a>
 <div class="container landing-page">
     <div class="row">
@@ -67,6 +48,26 @@
     </div>
 </div>
 
+<!-- top menu that sticks around -->
+<div class="container navigation">
+    <div class="row">
+        <div class="threecol logo">
+            <a href="#landing" id="landing-link"><img id="logo" src="images/reuna-logo-4.png" alt="Reuna" /></a>
+        </div>
+        <div class="ninecol last">
+            <nav>
+                <ul>
+                    <li><a href="#surfaces">Multiple surfaces</a></li>
+                    <li><a href="#interactivity">Interactivity</a></li>
+                    <li><a href="#infovis">Information visualization</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
 <a name="surfaces" id="surfaces" class="page-link"></a>
 <div class="container">
     <div class="row">
@@ -79,7 +80,7 @@
             <p>Combine an <b>unlimited</b> number of screens and projections to give your content the visibility it deserves.</p>
             <p>Serve <b>any content</b> from videos to images to dynamic text and interactive visuals.</p>
             <p>Capture the attention of your audience and lift central parts of your content up by <b>synchronously</b> playing them on all the screens.</p>
-            <p class="colorbox-video"><a href="http://player.vimeo.com/video/33879563?autoplay=1">Watch the video</a></p>
+            <p class="colorbox-video"><a href="http://player.vimeo.com/video/33879563?autoplay=1" class="colorbox-video">Watch the video</a></p>
         </div>
         <div class="ninecol last slider-wrapper theme-default">
             <div class="ribbon"></div>
@@ -114,7 +115,7 @@
             <p>A beautiful projection displays temporal information interactively.</p>
             <p>Participants control the display of information by moving within a space, each step taking them forward in time.</p>
             <p>Include images and video to create depth and provide context.</p>
-            <p class="colorbox-video"><a href="http://player.vimeo.com/video/33879089?autoplay=1">Watch the video</a></p>
+            <p class="colorbox-video"><a href="http://player.vimeo.com/video/33879089?autoplay=1" class="colorbox-video">Watch the video</a></p>
         </div>
         <div class="ninecol last slider-wrapper theme-default">
             <div class="ribbon"></div>
@@ -180,7 +181,7 @@
             <p><a href="mailto:info@reunabureau.com">info@reunabureau.com</a><br />
                 +358 40 722 5101</p>
         </div>
-        <div class="sixcol" style="text-align:center;">
+        <div class="sixcol reuna-logo" style="text-align:center;">
             <img src="images/aboutcontact-1.png" alt="Reuna" />
         </div>
         <div class="threecol last">
@@ -263,6 +264,19 @@ $(window).load(function() {
         $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 400,
             function() { window.location.href = href; } );
         return false;
+    });
+    // Sticky Menu
+    var e = $('.navigation'), eTop = e.position().top;
+    $(window).scroll(function(){
+        var wTop = $(this).scrollTop();
+        if(wTop >= eTop){
+            e.css({position:'fixed',top:0,left:0}).addClass('sticky');
+            $('.landing-page').css({'margin-bottom':'66px'});
+        }
+        else{
+            e.css({position:'relative',top:'auto',left:'auto'}).removeClass('sticky');
+            $('.landing-page').css({'margin-bottom':'0'});
+        }
     });
 });
 </script>

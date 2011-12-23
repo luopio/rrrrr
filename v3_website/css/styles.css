@@ -8,7 +8,7 @@
     font-weight:normal; font-style:normal;
 }
 
-body {background:#fff url('../images/bg-1.png'); color:#666; font:normal normal 13px/1.7 Courier, Monaco, Helvetica, Arial, Verdana, sans-serif ;}
+body {background:#fff url('../images/bg-1.png'); color:#666; font:normal normal 13px/1.7 Courier, Monaco, Helvetica, Arial, Verdana, sans-serif;}
 
 a {text-decoration:none; color:#1779bf;}
 a:hover {color:#2e87c4;}
@@ -18,27 +18,28 @@ a.hilight {color:#1779bf;}
 p.colorbox-video {margin-top:20px;}
 
 h1, h2, h3, h4 {font:normal normal 15px/2 'AWConquerorSansLight', 'Lucida Grande'; text-transform:uppercase; letter-spacing:1.5px;color:#222;}
-h1 {font-size:24px; line-height:3.5;}
+h1 {font-size:24px;line-height:1.4;margin-bottom:26px}
 h2 {font-size:20px;}
 h3 {font-size:16px; line-height:1.8;}
 h4 {font-size:16px; line-height:1.2; letter-spacing:1px; margin:0 0 10px 0;}
 p {margin-bottom:10px;}
 p.mdash {color:#aaa;}
 
-canvas#landing-canvas {height:400px; width:100%; position:absolute; top:80px; left:0; z-index:10; background:none;}
-
+canvas#landing-canvas {height:400px; width:100%; position:absolute; top:0; left:0; z-index:10; background:none;}
 /* top nav */
-.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:fixed; z-index:1000; top:0; left:0; width:100%;}
+/*.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:fixed; z-index:1000; top:0; left:0; width:100%;}*/
+.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:relative; z-index:1000; top:0; left:0; width:100%;border:1px solid #eee}
 .navigation img#logo {padding:13px 0 0 0;margin:0;}
 nav ul {padding:25px 0;}
 nav ul li {display:inline; list-style-type:circle; color:#06c; padding-right:40px;}
 nav ul li a {text-decoration:none; color:#222;}
-
+.sticky {-webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); -moz-box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05); box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05);border:0;border-bottom:1px solid #ddd;}
+    
 /* pages */
-div.landing-page {padding:40px 0;}
+div.landing-page {padding-bottom:40px;}
 div.contact-page {background:#f0f0f0; padding-bottom:60px;}
 div.contact-page h2 {text-align:center;margin:60px 0;}
-div.slogan {margin:60px 0; text-align:center; letter-spacing:2px; }
+div.slogan {margin:10px 0 80px 0; text-align:center; letter-spacing:2px; }
 div.shortinfo div {text-align:left;}
 div.shortinfo h2 {}
 div.shortinfo div img {margin-bottom:10px;display:none;}
@@ -52,10 +53,26 @@ div.nivo-caption { text-align:center; text-transform:uppercase; font:normal norm
 /* ! Layout for mobile version   */
 /* ============================= */
 
-@media handheld, only screen and (max-width: 767px) {
-body { }
+@media only screen and (max-width:1023px){
+    nav ul li {padding-right:18px;font-size:11px;}
 }
+    
+@media handheld, only screen and (max-width:767px){
+    div.slogan h1 {font-size:18px; line-height:2; padding-right:60px;padding-left:60px;}
+    div.slogan h2 {font-size:14px; line-height:3; }
+    nav ul {padding-bottom:10px; padding-top:0;margin-top:-25px}
+    nav ul li {display:block; list-style-type:circle; color:#06c; padding-right:30px; padding-bottom:10px; text-align:right;font-size:13px;}
+    .contact-page .reuna-logo {display:none;}
+    div.person {margin-bottom:0px;margin-top:30px;}
+}
+    
 
+@media handheld, only screen and (max-width:480px){
+    p {margin-bottom:5px;}
+    div.slogan h1 {font-size:16px; line-height:2; padding-right:20px;padding-left:20px;}
+    div.slogan h2 {font-size:13px; line-height:3; }
+    nav ul li {padding-right:20px;}
+}
 
 /* ========================================== */
 /* ! Provide higher res assets for iPhone 4   */
