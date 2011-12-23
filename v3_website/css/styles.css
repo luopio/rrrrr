@@ -8,7 +8,7 @@
     font-weight:normal; font-style:normal;
 }
 
-body {background:#fff url('../images/bg-1.png'); color:#444; font:normal normal 13px/1.7 Courier, Monaco, Helvetica, Arial, Verdana, sans-serif ;}
+body {background:#fff url('../images/bg-1.png'); color:#666; font:normal normal 13px/1.7 Courier, Monaco, Helvetica, Arial, Verdana, sans-serif ;}
 
 a {text-decoration:none; color:#1779bf;}
 a:hover {color:#2e87c4;}
@@ -17,7 +17,7 @@ a.hilight {color:#1779bf;}
 .colorbox-video a {text-transform:uppercase; background:#000; color:#fff; padding:4px 8px;}
 p.colorbox-video {margin-top:20px;}
 
-h1, h2, h3, h4 {font:normal normal 15px/2 'AWConquerorSansLight', 'Lucida Grande'; text-transform:uppercase; letter-spacing:1.5px;}
+h1, h2, h3, h4 {font:normal normal 15px/2 'AWConquerorSansLight', 'Lucida Grande'; text-transform:uppercase; letter-spacing:1.5px;color:#222;}
 h1 {font-size:24px; line-height:3.5;}
 h2 {font-size:20px;}
 h3 {font-size:16px; line-height:1.8;}
