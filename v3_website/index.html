@@ -143,7 +143,7 @@
             <p>Create ever-lasting impressions in your clientele and partner network.</p> 
             <p>Add interaction to dive deeper into the information.</p>
             <p class="mdash">&mdash;</p>
-            <h4>Example Project: Seismi </h4>
+            <h4>Example Project: Seismi</h4>
             <p>Several different views provide continuously updating information about the earthquakes around the globe.</p>
             <p><a href="http://www.seismi.org">Experience it online</a></p>
         </div>
@@ -230,6 +230,7 @@
 <script type="text/javascript" src="js/libs/jquery.nivo.slider.pack.js"></script>
 <script type="text/javascript" src="js/libs/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
+<<<<<<< HEAD
 $(window).load(function() {
     $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(
         /*
@@ -250,6 +251,44 @@ $(window).load(function() {
         */
     );
     
+=======
+$(window).load(function() {        
+    var params = {
+                    // effect: 'slideInRight,fade',
+                    pauseTime: 4000,
+                    slices: 6, // For slice animations
+                    boxCols: 4, // For box animations
+                    boxRows: 2, // For box animations
+                  };
+    
+    $('#surfaces-carousel,#interactivity-carousel,#infovis-carousel').nivoSlider(params);
+    
+    // pauseNivo('#surfaces-carousel')
+    // pauseNivo('#interactivity-carousel')
+    // pauseNivo('#infovis-carousel')
+    
+    function pauseNivo(elem) {
+        with($(elem).data('nivoslider')) {
+            //echo($(elem).data('nivoslider'))
+            //vars.paused = true;
+            //clearInterval( timer );
+            //timer = '';
+            stop()
+        }
+    }
+    function resumeNivo(elem) {
+        with($(elem).data('nivoslider')) {
+            vars.paused = false;
+            //Restart the timer
+            if(timer == '' && !settings.manualAdvance){
+                timer = setInterval(function(){ nivoRun(slider, kids, settings, false); }, settings.pauseTime);
+            }
+        }
+    };
+    
+    $('a.nivo-video-link').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
+
+>>>>>>> 1ea0d4ac230944826329c0de69386cddd54fc26e
     $('a.colorbox-video').colorbox({transition: "fade", iframe: true, width: "90%", height: "90%"});
         
     // PAGE SCROLLING (uses jquery)
