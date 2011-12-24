@@ -27,13 +27,15 @@ p.mdash {color:#aaa;}
 
 canvas#landing-canvas {height:400px; width:100%; position:absolute; top:0; left:0; z-index:10; background:none;}
 /* top nav */
-/*.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:fixed; z-index:1000; top:0; left:0; width:100%;}*/
-.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:relative; z-index:1000; top:0; left:0; width:100%;border:1px solid #eee}
+/*.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:fixed; z-index:1000; top:0; left:0; width:100%;}
+.navigation {background:#fff; background:rgba(255,255,255,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:relative; z-index:1000; top:0; left:0; width:100%; border:1px solid #eee}*/
+.navigation {background:#000; background:rgba(0,0,0,0.98); font:normal normal 13px/1 'AWConquerorSansLight'; text-transform:uppercase; letter-spacing:1.2px; position:relative; z-index:1000; top:0; left:0; width:100%;}
+
 .navigation img#logo {padding:13px 0 0 0;margin:0;}
 nav ul {padding:25px 0;}
 nav ul li {display:inline; list-style-type:circle; color:#06c; padding-right:40px;}
-nav ul li a {text-decoration:none; color:#222;}
-.sticky {-webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); -moz-box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05); box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05);border:0;border-bottom:1px solid #ddd;}
+nav ul li a {text-decoration:none; color:#fff;}
+.sticky {-webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); -moz-box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05); box-shadow:0px 4px 10px rgba(0, 0, 0, 0.05);}
     
 /* pages */
 div.landing-page {padding-bottom:40px;}
