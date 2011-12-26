@@ -25,7 +25,7 @@ reuna.canvas.init = function(canvas_id, drawCallback) {
         var realHeight = reuna.canvas._canvas.clientHeight;
         reuna.canvas._height = realHeight;
         reuna.canvas._canvas.setAttribute("height", realHeight);
-        echo("reuna.canvas.init: set canvas to size "+realWidth+","+realHeight);
+        //echo("reuna.canvas.init: set canvas to size "+realWidth+","+realHeight);
         reuna.canvas._ctx = reuna.canvas._canvas.getContext('2d');
         reuna.canvas.setColor(0, 0, 0, 255);
         reuna.canvas.fill();
@@ -57,7 +57,7 @@ reuna.canvas._resizeHandler = function(e) {
     var realHeight = reuna.canvas._canvas.clientHeight;
     reuna.canvas._height = realHeight;
     reuna.canvas._canvas.setAttribute("height", realHeight);
-    echo("reuna.canvas.resizeHandler: set canvas to size "+realWidth+","+realHeight);
+    //echo("reuna.canvas.resizeHandler: set canvas to size "+realWidth+","+realHeight);
     
 }
 
