@@ -267,8 +267,14 @@ $(window).load(function() {
     });
     // Sticky Menu
     var e = $('.navigation'), eTop = e.position().top;
+    //eTop = e.position().top;
+    $(window).resize(function() {
+        //console.log(eTop);
+        eTop = e.position().top;
+    });
     $(window).scroll(function(){
         var wTop = $(this).scrollTop();
+        //console.log(wTop+"   "+eTop)
         if(wTop >= eTop){
             e.css({position:'fixed',top:0,left:0}).addClass('sticky');
             $('.landing-page').css({'margin-bottom':'66px'});
