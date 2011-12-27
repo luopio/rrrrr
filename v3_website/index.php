@@ -205,7 +205,7 @@
 <script defer src="js/mylibs/canvas.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <!-- end scripts-->
-<?php 
+<?php
 $ip = $_SERVER["SERVER_ADDR"];
 if ($ip == '::1' || $ip == '127.0.0.1') {
     echo 'local';
