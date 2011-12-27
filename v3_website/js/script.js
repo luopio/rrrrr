@@ -56,6 +56,7 @@ $(window).load(function() {
     });
     // Sticky Menu
     var e = $('.navigation'), eTop = e.position().top;
+    var scrollTop;
     //eTop = e.position().top;
     $(window).resize(function() {
         //console.log(eTop);
@@ -63,7 +64,7 @@ $(window).load(function() {
     });
     $(window).scroll(function(){
         var wTop = $(this).scrollTop();
-        //console.log(wTop+"   "+eTop)
+        //console.log(wTop+"   "+eTop);
         if(wTop >= eTop){
             e.css({position:'fixed',top:0,left:0}).addClass('sticky');
             $('.landing-page').css({'margin-bottom':'66px'});
