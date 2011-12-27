@@ -57,26 +57,26 @@ div.nivo-caption { text-align:center; text-transform:uppercase; font:normal norm
 /* ============================= */
 
 @media only screen and (max-width:1023px){
-    nav ul li {padding-right:18px;font-size:11px;}
+    nav ul li {padding-right:18px ;font-size:11px;}
 }
     
 @media handheld, only screen and (max-width:767px){
-    div.slogan h1 {font-size:18px; line-height:2; padding-right:60px;padding-left:60px;}
+    div.slogan h1 {font-size:18px; line-height:2; padding-right:60px; padding-left:60px;}
     div.slogan h2 {font-size:14px; line-height:3; }
-    nav ul {padding-bottom:10px; padding-top:0;margin-top:-25px}
-    nav ul li {display:block; list-style-type:circle; color:#06c; padding-right:30px; padding-bottom:10px; text-align:right;font-size:13px;}
+    nav ul {padding-bottom:10px; padding-top:0; margin-top:-25px}
+    nav ul li {display:block; list-style-type:circle; color:#06c; padding-right:30px; padding-bottom:10px; text-align:right; font-size:13px;}
     .contact-page .reuna-logo {display:none;}
     div.person {margin-bottom:0px;margin-top:30px;}
-    .nivoSlider, .nivoSlider img { width: 500px; height: 300px; }
+    .nivoSlider, .nivoSlider img { width:500px; height:300px; }
 }
     
 
 @media handheld, only screen and (max-width:480px){
     p {margin-bottom:5px;}
-    div.slogan h1 {font-size:16px; line-height:2; padding-right:20px;padding-left:20px;}
+    div.slogan h1 {font-size:16px; line-height:2; padding-right:20px; padding-left:20px;}
     div.slogan h2 {font-size:13px; line-height:3; }
     nav ul li {padding-right:20px;}
-    .nivoSlider, .nivoSlider img { width: 300px; height: 180px; }
+    .nivoSlider, .nivoSlider img { width:300px; height:180px; }
 }
 
 /* ========================================== */
